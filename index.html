@@ -23,7 +23,7 @@
   --sage:#5E8B7E; --sage-deep:#4A7266; --sky:#A7C7E7; --slate:#2F3E46; --mist:#F1F5F4; --blush:#E8AEB7;
   --ink:#2F3E46; --muted:#56686E; --line:rgba(47,62,70,.12);
   --accent:#5E8B7E; --accent-soft:rgba(94,139,126,.14); --on-accent:#FFFFFF;
-  --pro:#C4677A; --carb:#4C8CCB; --fat:#B8862A; --over:#C0566B;
+  --pro:#C4677A; --carb:#4C8CCB; --fat:#B8862A; --over:#C0566B; --sug:#D98C9A; --na:#6E9CC4; --chol:#A58A5A;
   --warn-bg:rgba(232,174,183,.35); --warn-ink:#7A2E3C;
   --glass:rgba(255,255,255,.46); --glass-strong:rgba(255,255,255,.62); --glass-line:rgba(255,255,255,.72);
   --field:rgba(255,255,255,.58); --field-line:rgba(255,255,255,.9);
@@ -34,7 +34,7 @@
 html,body{margin:0}
 [hidden]{display:none!important}
 html{background:#D5E0E0}
-body{background:#D5E0E0;color:var(--ink);font-family:var(--font);font-weight:400;font-size:15px;line-height:1.6;padding-inline:16px;padding-block:16px 48px;min-height:100vh}
+body{background:#D5E0E0;color:var(--ink);font-family:var(--font);font-weight:400;font-size:15px;line-height:1.6;padding-inline:16px;padding-block:16px 48px;min-height:100vh;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 button,input,select{font-family:inherit}
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none}
 .scene svg{width:100%;height:100%;display:block}
@@ -306,6 +306,25 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
 .exic.cad{background:var(--over)}
 .exic.man{background:var(--carb)}
 .exrow .n{font-weight:500}
+.exrow.ed{grid-template-columns:12px minmax(0,1fr);row-gap:8px}
+.exrow .exact{display:flex;gap:2px}
+.exrow .exact .btn.x{width:28px}
+.exedit{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.exedit .unit{flex:1 1 110px;min-width:0}
+.exedit select{width:auto;flex:0 0 auto;padding:7px 8px}
+.exrow.x4{grid-template-columns:12px minmax(0,1fr) auto 60px}
+.kedit{margin-top:12px;padding:12px 14px;border-radius:14px;background:rgba(94,139,126,.1);display:flex;flex-direction:column;gap:8px}
+.kedit label{font-weight:600;font-size:14px;color:var(--ink)}
+.kedit .row2{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.kedit .unit{flex:1 1 120px;min-width:0}
+.kedit select{width:auto;padding:7px 8px}
+.mxdate .dp-btn{width:100%;justify-content:flex-start;padding:10px 14px;font-size:15px}
+.mxdate .dp-btn b{font-weight:500}
+.mxdate .dp-btn .chev{margin-left:auto;width:16px;height:16px;transition:transform .2s;color:var(--muted)}
+.mxdate .dp-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.mxcal .dp-foot{flex-wrap:wrap}.mxcal .dp-foot button{white-space:nowrap}.mxcal .dp-foot span{white-space:nowrap}
+.mxcal{position:static;width:auto;max-width:none;margin-top:8px;box-shadow:0 8px 24px rgba(47,62,70,.12)}
+.mxrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
 .trk{margin-top:14px;display:flex;flex-direction:column;gap:6px}
 .trk.on .unit input{border-color:var(--sage);background:#fff}
 .adj{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.45);border:1px solid var(--glass-line);border-radius:14px;padding:12px 14px;margin-top:14px;font-size:13.5px}
@@ -320,6 +339,38 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
 .cup.on .co{stroke:#3F74AE}
 .wtr-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
 .wtr-top b{font-size:22px;font-weight:600}
+.wslider{position:relative;margin:16px 0 4px}
+.wrange{-webkit-appearance:none;appearance:none;width:100%;height:32px;background:transparent;margin:0;cursor:pointer;--pct:0%}
+.wrange:focus{outline:none}
+.wrange::-webkit-slider-runnable-track{height:14px;border-radius:8px;background:linear-gradient(90deg,var(--sky) 0,#6FA0D2 var(--pct),rgba(255,255,255,.75) var(--pct));border:1px solid var(--glass-line)}
+.wrange::-moz-range-track{height:14px;border-radius:8px;background:linear-gradient(90deg,var(--sky) 0,#6FA0D2 var(--pct),rgba(255,255,255,.75) var(--pct));border:1px solid var(--glass-line)}
+.wrange::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid #4C8CCB;margin-top:-8px;box-shadow:0 2px 8px rgba(47,62,70,.18)}
+.wrange::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #4C8CCB;box-shadow:0 2px 8px rgba(47,62,70,.18)}
+.wrange:focus-visible::-webkit-slider-thumb{outline:3px solid rgba(76,140,203,.35);outline-offset:2px}
+.wmark{position:absolute;top:2px;width:2px;height:28px;background:var(--slate);opacity:.55;border-radius:1px;pointer-events:none;transform:translateX(-1px)}
+.wscale{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-bottom:10px}
+.wchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.wchips .btn{flex:1 1 0;min-width:0;padding-left:4px;padding-right:4px}
+.xnote{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.55}
+.prog .lim{font-size:11px;color:var(--muted);font-weight:400;margin-left:4px}
+.gw-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.gw-kv div{background:rgba(255,255,255,.5);border:1px solid var(--glass-line);border-radius:14px;padding:10px 12px}
+.gw-kv span{display:block;font-size:12px;color:var(--muted)}
+.gw-kv b{font-size:19px;font-weight:600}
+.gw-kv small{display:block;font-size:12px;color:var(--sage-deep)}
+.gw-safe{border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.6;background:rgba(94,139,126,.12);color:var(--ink);margin-bottom:10px}
+.gw-safe.bad{background:var(--warn-bg);color:var(--warn-ink)}
+.gw-tbl{max-height:320px;overflow:auto;border-radius:12px;border:1px solid var(--glass-line);background:rgba(255,255,255,.35)}
+.gw-tbl table{width:100%}
+#view-target .grid>*,#view-target .stackv>*,#gwCard{min-width:0;max-width:100%}
+.gw-tbl th,.gw-tbl td{white-space:nowrap;font-size:13px;padding:8px 6px}
+.gw-tbl th{position:sticky;top:0;background:#EEF3F1;z-index:1}
+.gw-tbl tr.now td{background:rgba(94,139,126,.14);font-weight:600}
+.gw-tbl td.ok{color:var(--sage-deep)} .gw-tbl td.bad{color:var(--over)}
+.chart .gline{stroke:var(--over);stroke-width:1.5;stroke-dasharray:3 4}
+.chart .pline{fill:none;stroke:var(--carb);stroke-width:1.6;stroke-dasharray:6 5;opacity:.8}
+.legend i.pl{background:none;border-top:2px dashed var(--carb);height:0;border-radius:0}
+.legend i.gl{background:none;border-top:2px dotted var(--over);height:0;border-radius:0}
 /* weekly summary */
 .srow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
 .srow:last-child{border-bottom:0}
@@ -357,7 +408,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
 .lockable{transition:opacity .3s}
 #cd-root.locked .lockable{opacity:.45;pointer-events:none;filter:saturate(.6)}
 /* stage */
-.cd-stage{position:relative;overflow:hidden;text-align:center;background:color-mix(in srgb,var(--bg,#EEF3F2) 45%,var(--glass));transition:background-color .5s ease}
+.cd-stage{position:relative;overflow:hidden;text-align:center;background:var(--bg,#EEF3F2);background:color-mix(in srgb,var(--bg,#EEF3F2) 45%,var(--glass));transition:background-color .5s ease}
 .cd-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--acc,var(--sage));opacity:.5}
 .cd-progress{position:absolute;left:0;right:0;top:0;height:6px;background:rgba(255,255,255,.45)}
 #cd-bar{height:100%;width:0;background:var(--sage);border-radius:0 3px 3px 0;transition:width .25s linear}
@@ -515,6 +566,42 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
 #cd-sumTable td,#cd-sumTable th{padding:6px 4px}
 #cd-sumTable input.rp{width:62px;padding:4px 6px}
 #cd-sumTable tfoot td{font-weight:600}
+
+/* ================= app shell: หน้าตาแบบแอปมือถือทุกขนาดจอ ================= */
+html{-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none;padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))!important;padding-top:calc(10px + env(safe-area-inset-top,0px))!important}
+button,.nav,.tab,.qchip,.cats button,.seg,.food{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.wrap{max-width:600px;gap:16px}
+header.top{position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:30;padding:8px 10px;border-radius:18px;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(246,249,248,.96)!important}
+.top .brand b{font-size:18px;letter-spacing:0;font-weight:600}
+.top .brand small{font-size:12px}
+.logo{width:40px;height:40px}
+.top .nav{position:fixed;left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 24px));bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;justify-content:space-around;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-radius:22px;box-shadow:0 10px 30px rgba(47,62,70,.16);padding:6px;border:1px solid rgba(255,255,255,.9)}
+.nav button{flex-direction:column;gap:2px;font-size:11px;padding:7px 4px;flex:1;white-space:nowrap;min-width:0;border-radius:16px}
+.nav button svg{width:22px;height:22px}
+.grid,.grid.log,.cols{grid-template-columns:1fr!important;gap:16px}
+.dgrid{gap:16px}
+.dgrid>*{grid-column:span 12!important}
+.exgrid{display:flex!important;flex-direction:column;align-items:stretch!important;gap:16px}
+.exgrid>*,.excol>*{width:100%;min-width:0}
+.excol{display:contents}
+.o1{order:1}.o2{order:2}.o3{order:3}.o4{order:4}.o5{order:5}.o6{order:6}.o7{order:7}
+.sticky{position:static!important}
+.card{padding:18px}
+.glass{border-radius:20px}
+.today-card{grid-template-columns:1fr;justify-items:center;gap:18px}
+.today-card>div:last-child{width:100%}
+.kv3{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.daybar{flex-wrap:nowrap}
+.daybar .dp-btn span{display:none}
+.daybar .dp-btn{padding:9px 11px}
+section[id^="view-"]:not([hidden]){animation:viewIn .22s ease}
+@keyframes viewIn{from{opacity:0;transform:translateY(6px)}}
+#toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
+footer{display:none}
+#view-target:not([hidden]) ~ footer{display:block}
+@media (pointer:coarse){input,select,textarea{font-size:16px!important}}
+@media (prefers-reduced-motion:reduce){section[id^="view-"]:not([hidden]){animation:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;animation:none!important}}
 </style>
 </head>
@@ -545,7 +632,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   <header class="top glass">
     <div class="brand">
       <span class="logo"><img src="icons/logo-mark.png" alt="" width="44" height="44"></span>
-      <div><b>BALANCE</b><small>แคลอรี่ · ฟิตเนส · สมดุล</small></div>
+      <div><b id="appTitle">ภาพรวมวันนี้</b><small id="today"></small></div>
     </div>
     <nav class="nav" aria-label="เมนูหลัก">
       <button type="button" data-view="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>แดชบอร์ด</button>
@@ -556,13 +643,6 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     <button class="btn small soft" type="button" id="installBtn" hidden>ติดตั้งแอป</button>
   </header>
 
-  <div class="hero">
-    <div>
-      <h1>คำนวณแคลอรี่ <em>ต่อวัน</em></h1>
-      <p>ตั้งเป้าจากร่างกายและกิจกรรมจริง บันทึกสิ่งที่กิน แล้วดูภาพรวมทั้งสัปดาห์ในที่เดียว</p>
-    </div>
-    <span class="date-pill" id="today"></span>
-  </div>
 
   <div class="daybar glass" id="daybar" hidden>
     <button class="btn x daynav" type="button" id="dayPrev" aria-label="วันก่อนหน้า">‹</button>
@@ -611,6 +691,12 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
         </div>
       </div>
 
+      <div class="glass card c4">
+        <div class="card-h"><h2>น้ำตาล · โซเดียม · คอเลสเตอรอล</h2></div>
+        <div class="progress" id="dX"></div>
+        <p class="xnote" id="dXNote"></p>
+      </div>
+
       <div class="glass card c7">
         <div class="card-h"><h2>แคลอรี่ 7 วันล่าสุด</h2><span class="hint" id="wkAvg"></span></div>
         <svg class="chart" id="wkChart" viewBox="0 0 640 230" role="img" aria-label="กราฟแท่งแคลอรี่ที่กินในแต่ละวัน เทียบกับเป้าหมาย"></svg>
@@ -625,7 +711,9 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
       <div class="glass card c7">
         <div class="card-h"><h2>น้ำหนัก</h2><span class="n" style="font-weight:600;font-size:18px" id="wLatest">–</span></div>
         <svg class="chart" id="wtChart" viewBox="0 0 600 190" role="img" aria-label="กราฟแนวโน้มน้ำหนัก"></svg>
-        <p class="hint" id="wChange" style="margin:6px 0 12px"></p>
+        <div class="legend" id="wLegend" hidden style="margin-top:4px"><span><i style="background:var(--sage-deep)"></i>น้ำหนักจริง</span><span id="wLegP"><i class="pl"></i>ตามแผน</span><span id="wLegG"><i class="gl"></i>เป้าหมาย</span></div>
+        <p class="hint" id="wChange" style="margin:6px 0 4px"></p>
+        <p class="hint" id="wGoal" style="margin:0 0 12px;color:var(--ink)"></p>
         <div class="inline-form">
           <div class="unit"><input type="number" id="wIn" min="20" max="300" step="0.1" inputmode="decimal" aria-label="น้ำหนักวันนี้"><small>กก.</small></div>
           <button class="btn" type="button" id="wSave">บันทึกน้ำหนักวันนี้</button>
@@ -641,10 +729,12 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
       </div>
 
       <div class="glass card c4">
-        <div class="card-h"><h2>น้ำดื่มวันนี้</h2><div class="btns"><button class="btn small ghost" type="button" id="wtrMinus" aria-label="ลดหนึ่งแก้ว">−</button><button class="btn small" type="button" id="wtrPlus">+ 1 แก้ว</button></div></div>
+        <div class="card-h"><h2>น้ำดื่มวันนี้</h2><span class="hint" id="wtrPct"></span></div>
         <div class="wtr-top"><b class="n" id="wtrTxt">0</b><span class="hint" id="wtrSub"></span></div>
-        <div class="cups" id="glasses"></div>
-        <p class="hint">แตะแก้วเพื่อบันทึก เป้าคิดจากน้ำหนักตัว × 33 มล.</p>
+        <div class="wslider"><input type="range" class="wrange" id="wtrRange" min="0" max="4000" step="50" value="0" aria-label="ปริมาณน้ำที่ดื่มวันนี้ หน่วยมิลลิลิตร"><i class="wmark" id="wtrMark" aria-hidden="true"></i></div>
+        <div class="wscale" id="wtrScale"></div>
+        <div class="wchips"><button class="btn small ghost" type="button" data-wadd="-100">−100</button><button class="btn small ghost" type="button" data-wadd="100">+100</button><button class="btn small ghost" type="button" data-wadd="250">+250</button><button class="btn small ghost" type="button" data-wadd="500">+500</button><button class="btn small ghost" type="button" data-wadd="750">+750</button></div>
+        <p class="hint">ลากแถบให้ตรงกับที่ดื่มจริง หรือกดปุ่มเพิ่มทีละมิลลิลิตร (ขวดเล็ก 600 มล. = +500 +100) เส้นขีดคือเป้า คิดจากน้ำหนักตัว × 33 มล.</p>
       </div>
 
       <div class="glass card c4">
@@ -755,6 +845,11 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
           </div>
         </div>
         <div class="field">
+          <label for="goalW">น้ำหนักเป้าหมาย</label>
+          <div class="unit"><input type="number" id="goalW" min="30" max="250" step="0.1" inputmode="decimal" placeholder="เช่น 75"><small>กก.</small></div>
+          <p class="hint">ใส่แล้วระบบจะวางแผนน้ำหนักรายสัปดาห์ บอกช่วงที่ปลอดภัย และวันที่คาดว่าจะถึงเป้า ความเร็วใช้ตามเป้าหมายที่เลือกด้านบน</p>
+        </div>
+        <div class="field">
           <label for="split">รูปแบบการกิน</label>
           <select id="split">
             <option value="bal">สมดุล — โปรตีน 1.6 ก./กก., ไขมัน 27%</option>
@@ -790,7 +885,15 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
         <div class="line"><b><span class="dot" style="background:var(--fat)"></span>ไขมัน</b><span class="n" id="fa">0 ก.</span></div>
         <div class="line indent"><span>ใยอาหาร (แนะนำ)</span><span class="n" id="fib">0 ก.</span></div>
         <div class="line indent"><span>น้ำดื่ม</span><span class="n" id="water">0 ล.</span></div>
+        <div class="line indent"><span>น้ำตาล ไม่เกิน (10% ของพลังงาน)</span><span class="n" id="xSu">0 ก.</span></div>
+        <div class="line indent"><span>โซเดียม ไม่เกิน</span><span class="n">2,000 มก.</span></div>
+        <div class="line indent"><span>คอเลสเตอรอล ไม่เกิน</span><span class="n">300 มก.</span></div>
         <div class="warn" id="warn" hidden></div>
+      </div>
+
+      <div class="glass card" id="gwCard">
+        <div class="card-h"><h2>แผนน้ำหนักถึงเป้า</h2><button class="btn small ghost" type="button" id="gwReset" hidden>เริ่มแผนใหม่จากวันนี้</button></div>
+        <div id="gwBody"></div>
       </div>
 
       <div class="cols">
@@ -842,7 +945,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
         </div>
         <div class="cats" id="cats"></div>
         <div class="foodlist" id="foodlist"></div>
-        <p class="hint">กดชื่อเมนูหรือ + เพื่อเพิ่ม 1 ที่ แก้จำนวนได้ในรายการด้านขวา ค่าเป็นค่าประมาณต่อ 1 ที่ปกติ</p>
+        <p class="hint">กดชื่อเมนูหรือ + เพื่อเพิ่ม 1 ที่ แก้จำนวนได้ในรายการของวันด้านล่าง ค่าเป็นค่าประมาณต่อ 1 ที่ปกติ</p>
         <details class="box">
           <summary style="cursor:pointer;font-weight:600">เพิ่มอาหารที่ไม่มีในรายการ</summary>
           <div class="stackv" style="gap:10px;margin-top:10px">
@@ -852,6 +955,11 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
               <div class="field"><label for="cfP">P (ก.)</label><input type="number" id="cfP" min="0"></div>
               <div class="field"><label for="cfC">C (ก.)</label><input type="number" id="cfC" min="0"></div>
               <div class="field"><label for="cfF">F (ก.)</label><input type="number" id="cfF" min="0"></div>
+            </div>
+            <div class="row" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+              <div class="field"><label for="cfSu">น้ำตาล (ก.)</label><input type="number" id="cfSu" min="0" placeholder="ไม่บังคับ"></div>
+              <div class="field"><label for="cfNa">โซเดียม (มก.)</label><input type="number" id="cfNa" min="0" placeholder="ไม่บังคับ"></div>
+              <div class="field"><label for="cfCh">คอเลสเตอรอล (มก.)</label><input type="number" id="cfCh" min="0" placeholder="ไม่บังคับ"></div>
             </div>
             <div class="btns"><button class="btn small" id="cfAdd" type="button">เพิ่มลงวันนี้</button><button class="btn small ghost" id="cfSave" type="button">เก็บไว้ในรายการ</button></div>
             <p class="hint" id="cfMsg"></p>
@@ -881,6 +989,11 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
               <div class="field"><label for="ciP">P</label><input type="number" id="ciP" min="0"></div>
               <div class="field"><label for="ciC">C</label><input type="number" id="ciC" min="0"></div>
               <div class="field"><label for="ciF">F</label><input type="number" id="ciF" min="0"></div>
+            </div>
+            <div class="row" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+              <div class="field"><label for="ciSu">น้ำตาล (ก.)</label><input type="number" id="ciSu" min="0" placeholder="ไม่บังคับ"></div>
+              <div class="field"><label for="ciNa">โซเดียม (มก.)</label><input type="number" id="ciNa" min="0" placeholder="ไม่บังคับ"></div>
+              <div class="field"><label for="ciCh">คอเลสเตอรอล (มก.)</label><input type="number" id="ciCh" min="0" placeholder="ไม่บังคับ"></div>
             </div>
             <div class="btns"><button class="btn small" id="ciAdd" type="button">เพิ่มวัตถุดิบนี้</button></div>
             <p class="hint" id="ciMsg"></p>
@@ -914,6 +1027,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
           <div><span class="lbl">ต่อ 1 ที่</span><span class="n big2" id="rPer">0 kcal</span><span class="n hint" id="rPerM"></span></div>
         </div>
         <p class="hint" id="rPer100"></p>
+        <p class="hint n" id="rX"></p>
         <div class="row" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:end">
           <div class="field"><label for="eatQ">กินไป</label><input type="number" id="eatQ" min="0" step="0.5" value="1"></div>
           <div class="field"><label for="eatU">หน่วย</label><select id="eatU"><option value="serv">ที่</option><option value="g">กรัม (น้ำหนักสุกที่ตักกิน)</option></select></div>
@@ -933,7 +1047,9 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
         <div><span class="lbl" id="leftLbl">เหลือกินได้อีก</span><div class="v n" id="left">0</div></div>
         <span class="hint n" id="eatenTxt">กินไป 0 / 0 kcal</span>
       </div>
-      <div class="progress" style="margin:16px 0" id="prog"></div>
+      <div class="progress" style="margin:16px 0 10px" id="prog"></div>
+      <div class="progress" style="margin:0 0 6px" id="progX"></div>
+      <p class="xnote" id="progXNote" style="margin:0 0 14px"></p>
       <h3 id="logTitle" style="font-size:14px;font-weight:600;margin:0 0 4px"></h3>
       <div class="scroll-x">
         <table>
@@ -1031,13 +1147,24 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
         <div class="glass card o4">
           <div class="card-h"><h2>บันทึกกิจกรรมเอง</h2></div>
           <div class="stackv" style="gap:12px">
-            <div class="field"><label for="mxA">กิจกรรม</label><select id="mxA"></select></div>
-            <div class="inline-form">
-              <div class="unit"><input type="number" id="mxMin" min="0" step="5" value="30" aria-label="นาที"><small>นาที</small></div>
-              <button class="btn" type="button" id="mxAdd">บันทึก</button>
+            <div class="field mxdate"><span class="lbl" id="mxDateLbl">วันที่ออกกำลังกาย</span>
+              <input type="hidden" id="mxDate">
+              <button type="button" class="dp-btn" id="mxDateBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="mxCal" aria-describedby="mxDateLbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><b id="mxDateTxt">วันนี้</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="dp-pop mxcal" id="mxCal" hidden role="dialog" aria-label="เลือกวันที่ออกกำลังกาย">
+                <div class="dp-head"><button type="button" id="mxPrev" aria-label="เดือนก่อน">‹</button><b id="mxLabel"></b><button type="button" id="mxNext" aria-label="เดือนถัดไป">›</button></div>
+                <div class="dp-grid" id="mxGrid"></div>
+                <div class="dp-foot"><button type="button" data-mq="0">วันนี้</button><button type="button" data-mq="-1">เมื่อวาน</button><button type="button" data-mq="-2">2 วันก่อน</button><span><i></i>มีออกกำลังกาย</span></div>
+              </div>
             </div>
+            <div class="field"><label for="mxA">กิจกรรม</label><select id="mxA"></select></div>
+            <div class="mxrow">
+              <div class="field"><label for="mxMin">เวลา</label><div class="unit"><input type="number" id="mxMin" min="0" step="5" value="30"><small>นาที</small></div></div>
+              <div class="field"><label for="mxK">kcal จากนาฬิกา</label><div class="unit"><input type="number" id="mxK" min="0" step="1" placeholder="ไม่บังคับ"><small>kcal</small></div></div>
+            </div>
+            <div class="field" id="mxKTypeBox" hidden><label for="mxKType">ค่าที่ใส่เป็นแบบ</label><select id="mxKType"><option value="a">Active (เฉพาะที่เผาเพิ่ม)</option><option value="t">รวม (Total)</option></select></div>
+            <button class="btn" type="button" id="mxAdd">บันทึก</button>
             <p class="hint" id="mxOut"></p>
-            <p class="hint">ใช้กับกิจกรรมที่ไม่ได้จับเวลา เช่น เตะบอล ปั่นจักรยาน เดินห้าง ใส่เฉพาะเวลาที่ขยับจริง</p>
+            <p class="hint">ใช้กับกิจกรรมที่ไม่ได้จับเวลา หรือลืมบันทึก เช่น เตะบอล ปั่นจักรยาน เดินห้าง ถ้าไม่ใส่ kcal ระบบประมาณจาก MET × น้ำหนักตัว × เวลา</p>
           </div>
         </div>
 
@@ -1071,6 +1198,13 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
           <p class="hint" id="cd-sumSub"></p>
           <div class="cd-big" id="cd-sumBig"></div>
           <div class="scroll-x"><table id="cd-sumTable"></table></div>
+          <div class="kedit">
+            <label for="cd-kIn">แก้ kcal รวมให้ตรงกับนาฬิกา / เซนเซอร์</label>
+            <div class="row2"><div class="unit"><input type="number" id="cd-kIn" min="0" max="5000" step="1" inputmode="numeric"><small>kcal</small></div>
+              <select id="cd-kType" aria-label="ชนิดค่าแคลอรี่"><option value="t">รวม (Total)</option><option value="a">Active (เฉพาะที่เผาเพิ่ม)</option></select>
+              <button type="button" class="btn small" id="cd-kSave">ใช้ค่านี้</button></div>
+            <p class="hint" id="cd-kMsg"></p>
+          </div>
           <p class="hint" id="cd-sumNote" style="margin-top:10px;line-height:1.7"></p>
           <div class="btns" style="justify-content:flex-end;margin-top:12px"><button type="button" class="btn" id="cd-sumClose">ปิด</button></div>
         </div>
@@ -1104,7 +1238,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
   };
   const d=new Date(), dayKey='kc.log.'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-  $('today').textContent=d.toLocaleDateString('th-TH',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  $('today').textContent=d.toLocaleDateString('th-TH',{weekday:'long',day:'numeric',month:'long'})+' · BALANCE';
 
   /* ---------- target calculator ---------- */
   const T={kcal:0,p:0,c:0,f:0};
@@ -1113,7 +1247,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   const mealPlans={3:[["เช้า",.30],["กลางวัน",.40],["เย็น",.30]],4:[["เช้า",.25],["กลางวัน",.35],["ของว่าง",.10],["เย็น",.30]],5:[["เช้า",.22],["ว่างเช้า",.10],["กลางวัน",.30],["ว่างบ่าย",.10],["เย็น",.28]]};
   const val=id=>{const v=parseFloat($(id).value);return isFinite(v)?v:0;};
   const radio=n=>{const r=document.querySelector('input[name="'+n+'"]:checked');return r?r.value:null;};
-  const profileIds=['age','height','weight','bf','act','work','steps','tdeeMan','split','meals','calIn','calDays','calW0','calW1'];
+  const profileIds=['age','height','weight','bf','act','work','steps','tdeeMan','split','meals','calIn','calDays','calW0','calW1','goalW'];
   // [ชื่อ, MET, กลุ่ม] อ้างอิง Compendium of Physical Activities
   const EX=[
     ["เดินสบายๆ (4 กม./ชม.)",3.0,"เดิน/วิ่ง"],["เดินเร็ว (5.5–6 กม./ชม.)",4.3,"เดิน/วิ่ง"],["เดินขึ้นเขา / เทรล",6.0,"เดิน/วิ่ง"],
@@ -1195,7 +1329,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     $('c').textContent=fmt(cG)+' ก. · '+Math.round(eC/tot*100)+'%';
     $('fa').textContent=fmt(fG)+' ก. · '+Math.round(eF/tot*100)+'%';
     $('sp').style.width=(eP/tot*100)+'%';$('sc').style.width=(eC/tot*100)+'%';$('sf').style.width=(eF/tot*100)+'%';
-    $('fib').textContent=fmt(kcal/1000*14)+' ก.';$('water').textContent=(w*0.033).toFixed(1)+' ล.';
+    $('fib').textContent=fmt(kcal/1000*14)+' ก.';$('xSu').textContent=fmt(kcal*0.1/4)+' ก.';$('water').textContent=(w*0.033).toFixed(1)+' ล.';
     $('warn').hidden=!warn.length;$('warn').textContent=warn.join(' · ');
     const bmi=w/Math.pow(h/100,2);$('bmi').textContent=bmi.toFixed(1);
     $('bmiCat').textContent=bmi<18.5?'น้ำหนักน้อย':bmi<23?'ปกติ':bmi<25?'น้ำหนักเกิน':bmi<30?'อ้วนระดับ 1':'อ้วนระดับ 2';
@@ -1205,7 +1339,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     const m2=Math.pow(h/100,2);$('ideal').textContent='น้ำหนักที่ BMI 18.5–22.9 สำหรับส่วนสูงนี้: '+(18.5*m2).toFixed(1)+'–'+(22.9*m2).toFixed(1)+' กก.';
     $('mealBody').innerHTML=mealPlans[$('meals').value].map(([n,r])=>'<tr><td>'+n+'</td><td class="n">'+fmt(kcal*r)+'</td><td class="n">'+fmt(pG*r)+'</td><td class="n">'+fmt(cG*r)+'</td><td class="n">'+fmt(fG*r)+'</td></tr>').join('');
     const prof={sex,goal:radio('goal'),actMode:mode,useCal:$('useCal').checked,ex:EXR.map(r=>[r.a,r.min,r.t])};profileIds.forEach(id=>prof[id]=$(id).value);store.set('kc.profile',prof);
-    renderLog();sendProfile();
+    renderGoal();renderLog();sendProfile();
   }
   // restore profile
   (function(){const p=store.get('kc.profile',null);if(!p)return;
@@ -1301,6 +1435,27 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     ["แตงโม","1 ถ้วย 150 ก.",45,0.9,11,0.2,"ผลไม้"]
   ];
   store.get('kc.customFood',[]).forEach(x=>FOODS.push(x));
+  /* ---------- sugar (g) · sodium (mg) · cholesterol (mg) per serving — Thai food composition tables (INMU / กรมอนามัย), hdmall sodium table, USDA FoodData Central ---------- */
+  const NUTX={
+    "ข้าวกะเพราไก่ + ไข่ดาว":[6,1250,260],"ข้าวกะเพราหมูสับ":[5,1150,80],"ข้าวมันไก่ต้ม":[3,1184,95],"ข้าวมันไก่ทอด":[4,1250,100],
+    "ข้าวขาหมู":[8,1205,150],"ข้าวผัดหมู":[3,800,170],"ข้าวหมูแดง":[14,1100,70],"ข้าวไข่เจียว":[1,800,370],"ข้าวราดแกง 2 อย่าง":[5,1300,80],
+    "ข้าวหมูกระเทียม":[3,900,85],"โจ๊กหมู + ไข่":[1,900,240],"ข้าวต้มปลา":[1,1000,50],"ข้าวสวย":[0,1,0],"ข้าวกล้อง":[0.2,3,0],"ข้าวเหนียว":[0,5,0],
+    "ผัดไทยกุ้งสด":[20,1300,250],"ผัดซีอิ๊วหมู":[8,1352,220],"ราดหน้าหมู":[6,1400,60],"ก๋วยเตี๋ยวเส้นเล็กน้ำใส ลูกชิ้นหมู":[3,1500,50],
+    "ก๋วยเตี๋ยวต้มยำ":[8,1700,60],"ก๋วยเตี๋ยวเรือ":[4,1000,40],"บะหมี่เกี๊ยวหมูแดง":[6,1480,90],"เย็นตาโฟ":[8,1600,60],"ข้าวซอยไก่":[8,1500,100],
+    "ขนมจีนน้ำยา":[4,1400,50],"มาม่าต้ม (ซอง)":[3,1600,0],"ส้มตำไทย":[12,1006,20],"ส้มตำปูปลาร้า":[5,1400,30],"ไก่ย่าง (สะโพก)":[3,500,120],
+    "คอหมูย่าง":[3,600,80],"ลาบหมู":[1,800,70],"ต้มยำกุ้งน้ำใส":[3,1200,130],"ต้มยำกุ้งน้ำข้น":[4,1300,140],"แกงเขียวหวานไก่":[5,1100,70],
+    "ต้มข่าไก่":[4,1000,70],"แกงจืดเต้าหู้หมูสับ":[2,900,40],"ผัดผักรวม":[4,894,0],"ไข่ต้ม":[0.6,62,186],"ไข่ดาว":[0.4,95,184],"ไข่เจียว":[0.5,250,186],
+    "อกไก่ย่าง/ต้ม":[0,74,85],"ไก่ทอด (สะโพก)":[0,450,110],"ปีกไก่ทอด":[0,250,60],"หมูทอดกระเทียม":[2,600,90],"หมูกรอบ":[0,500,90],
+    "ต้มเลือดหมู":[1,1100,150],"เกาเหลาเครื่องในหมู":[1,1300,350],"ข้าวต้มเครื่องใน":[1,1100,300],"ตับหวาน":[3,700,350],"ต้มแซ่บกระดูกอ่อน":[1,1200,90],
+    "เครื่องในไก่ย่าง":[2,250,150],"ตีนไก่ต้ม/ตุ๋น":[1,300,60],"หนังไก่ทอด":[0,200,55],"แคบหมู":[0,380,20],"หมูปิ้ง":[5,250,25],"ลูกชิ้นปิ้ง":[4,400,15],
+    "ปาท่องโก๋":[1,300,0],"ซาลาเปาหมูแดง":[12,350,15],"แซนด์วิชแฮมชีส (ร้านสะดวกซื้อ)":[4,800,35],"ข้าวเหนียวมะม่วง":[40,150,0],"ขนมปังโฮลวีต":[1.5,140,0],
+    "นมจืด":[10,90,24],"นมจืดพร่องมันเนย":[10,100,5],"นมถั่วเหลืองหวาน":[15,90,0],"เวย์โปรตีน":[2,60,30],"ชาไทยเย็น":[40,60,10],
+    "กาแฟเย็น (เย็นหวาน)":[35,70,10],"ลาเต้เย็น (ไม่หวาน)":[10,100,20],"อเมริกาโน่":[0,10,0],"น้ำอัดลม":[35,30,0],"เบียร์":[0,14,0],
+    "กล้วยหอม":[14,1,0],"กล้วยน้ำว้า":[10,1,0],"ส้ม":[12,0,0],"แอปเปิล":[19,2,0],"มะม่วงสุก":[30,2,0],"ฝรั่ง":[5,2,0],"แตงโม":[9,2,0]
+  };
+  const xOfFood=f=>f[7]!=null?[+f[7]||0,+f[8]||0,+f[9]||0]:(NUTX[f[0]]||null);
+  const xf=e=>e?{su:e[0],na:e[1],ch:e[2]}:{};
+
   const CATS=["ทั้งหมด","ข้าว","เส้น","กับข้าว","ของว่าง","เครื่องดื่ม","ผลไม้","ของฉัน"];
   let cat="ทั้งหมด";
   $('cats').innerHTML=CATS.map(c=>'<button type="button" data-c="'+c+'" aria-pressed="'+(c===cat)+'">'+c+'</button>').join('');
@@ -1319,14 +1474,17 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     let i=null;const b=e.target.closest('button[data-i]');
     if(b)i=+b.dataset.i;else{const r=e.target.closest('.food');if(r)i=+r.querySelector('button').dataset.i;}
     if(i==null)return;const f=FOODS[i];
-    addLog({name:f[0],unit:f[1],q:1,k:f[2],p:f[3],c:f[4],f:f[5]});
+    addLog({name:f[0],unit:f[1],q:1,k:f[2],p:f[3],c:f[4],f:f[5],...xf(xOfFood(f))});
   });
   function customFood(){
     const name=$('cfName').value.trim(),k=parseFloat($('cfK').value);
     if(!name||!(k>=0)){$('cfMsg').textContent='ใส่ชื่อและแคลอรี่ก่อน';return null;}
-    return [name,"1 ที่",k,parseFloat($('cfP').value)||0,parseFloat($('cfC').value)||0,parseFloat($('cfF').value)||0,"ของฉัน"];
+    const o=id=>{const v=parseFloat($(id).value);return isFinite(v)&&v>=0?v:null;},su=o('cfSu'),na=o('cfNa'),ch=o('cfCh');
+    const f=[name,"1 ที่",k,parseFloat($('cfP').value)||0,parseFloat($('cfC').value)||0,parseFloat($('cfF').value)||0,"ของฉัน"];
+    if(su!=null||na!=null||ch!=null)f.push(su||0,na||0,ch||0);
+    return f;
   }
-  $('cfAdd').addEventListener('click',()=>{const f=customFood();if(!f)return;addLog({name:f[0],unit:f[1],q:1,k:f[2],p:f[3],c:f[4],f:f[5]});$('cfMsg').textContent='เพิ่ม '+f[0]+' แล้ว';});
+  $('cfAdd').addEventListener('click',()=>{const f=customFood();if(!f)return;addLog({name:f[0],unit:f[1],q:1,k:f[2],p:f[3],c:f[4],f:f[5],...xf(xOfFood(f))});$('cfMsg').textContent='เพิ่ม '+f[0]+' แล้ว';});
   $('cfSave').addEventListener('click',()=>{const f=customFood();if(!f)return;FOODS.push(f);
     store.set('kc.customFood',FOODS.filter(x=>x[6]==="ของฉัน"));renderFoods();$('cfMsg').textContent='เก็บ '+f[0]+' ไว้ในหมวด "ของฉัน" แล้ว';});
 
@@ -1493,6 +1651,20 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     ["peanut","ถั่วลิสงคั่ว","ไขมัน/ซอส",567,26,16,49,[["ช้อนโต๊ะ",9]]]
   ];
   store.get('kc.customIng',[]).forEach(x=>ING.push(x));
+  /* sugar g · sodium mg · cholesterol mg per 100 g raw (USDA FoodData Central / Thai FCD) */
+  const INGX={rice:[0.1,5,0],brice:[0.8,7,0],crice:[0.05,1,0],rnood:[0.1,180,0],enood:[1,400,50],glass:[0,10,0],bread:[6,450,0],flour:[0.3,2,0],tflour:[1,800,0],crumb:[6,730,0],oat:[1,2,0],potato:[0.8,6,0],sweetp:[4.2,55,0],
+    pkln:[0,52,65],pklo:[0,55,65],pklf:[0,55,70],pknk:[0,60,75],pkjw:[0,60,75],pksh:[0,65,72],pklg:[0,55,65],pkmn:[0,56,72],pkml:[0,60,65],pkbl:[0,32,72],pkrb:[0,75,80],pkcb:[0,80,90],pkhk:[0,70,95],pkcr:[0,1800,95],
+    bacon:[0,800,66],mooyor:[2,900,55],saus:[1.5,900,70],kunc:[25,1100,80],pliv:[0,87,301],phrt:[0,56,131],pkid:[0,120,319],pstm:[0,75,223],pint:[0,25,156],pspl:[0,98,363],plng:[0,153,320],ptng:[0,110,101],pear:[0,170,90],pbld:[0,150,30],pbrn:[0,120,2195],
+    chbr:[0,45,73],chtd:[0,55,65],chth:[0,95,90],chsk:[0,85,98],chds:[0,90,92],chdn:[0,95,85],chwg:[0,75,110],chwh:[0,70,90],chmn:[0,60,86],chsn:[0,63,109],chft:[0,67,84],chtl:[0,70,100],cliv:[0,71,345],chrt:[0,74,136],cgiz:[0,69,130],cbld:[0,150,30],cegg:[0.5,50,1000],
+    beef:[0,60,62],salm:[0,45,55],tila:[0,52,50],tuna:[0,247,36],shrimp:[0,120,161],squid:[0,44,233],egg:[0.4,142,372],degg:[0.9,146,884],qegg:[0.4,141,844],eggw:[0.7,166,0],tofu:[0.5,10,0],etofu:[1,350,60],
+    veg:[1,40,0],kale:[1,7,0],mgspin:[0.3,113,0],choy:[1,65,0],ncab:[1.4,9,0],lett:[1,28,0],spin:[0.4,79,0],ivy:[0.5,10,0],cabb:[3.2,18,0],cauli:[1.9,30,0],broc:[1.7,33,0],celery:[1.8,80,0],lbean:[2,4,0],snpea:[4,4,0],sprout:[4.1,6,0],
+    bcorn:[1.5,20,0],corn:[6.3,15,0],okra:[1.5,7,0],tom:[2.6,5,0],cuc:[1.7,2,0],carrot:[4.7,69,0],radish:[2.5,21,0],onion:[4.2,4,0],tegg:[2,5,0],legg:[3.5,2,0],pegg:[1,5,0],pump:[2.8,1,0],wgourd:[0.5,111,0],lgourd:[1,3,0],bmelon:[1,5,0],
+    bamboo:[3,4,0],papaya:[4,8,0],bell:[2.4,4,0],stink:[1,5,0],mush:[2,5,0],mstraw:[0.5,10,0],moyst:[1.1,18,0],menoki:[0.2,3,0],mshii:[2.4,9,0],hbasil:[0.3,4,0],tbasil:[0.3,4,0],lbasil:[0.3,4,0],cilan:[0.9,46,0],cilroot:[1,40,0],
+    culant:[0.5,20,0],dill:[0.5,61,0],scal:[2.3,16,0],mint:[0.5,31,0],vmint:[0.5,10,0],betel:[0.5,10,0],lemgr:[0.5,6,0],galan:[1,10,0],ginger:[1.7,13,0],krachai:[1,10,0],turm:[3,38,0],kaffir:[0.5,10,0],shallot:[7.9,12,0],garlic:[1,17,0],
+    chili:[5,9,0],spur:[5,9,0],dchili:[10,30,0],pepper:[0.6,20,0],lime:[1.7,2,0],tamar:[20,15,0],oil:[0,0,0],lard:[0,0,95],butter:[0.1,640,215],coco:[3.3,15,0],sugar:[100,1,0],fish:[3.6,7850,0],oyster:[18,2730,0],soy:[3,6600,0],dsoy:[45,4000,0],
+    chpaste:[5,3900,0],milk:[5,43,10],cheese:[3.5,1500,80],peanut:[4.2,6,0]};
+  const ingX=ing=>ing[8]!=null?[+ing[8]||0,+ing[9]||0,+ing[10]||0]:(INGX[ing[0]]||null);
+
   const MEAT_GROUPS=["หมู","หมู: เครื่องใน","ไก่","ไก่: เครื่องใน","ปลา/ทะเล/วัว"];
   // loss = สัดส่วนไขมันจากเนื้อสัตว์ที่ละลายออกไปไม่ได้กิน, add = น้ำมันที่อาหารอมเพิ่ม (สัดส่วนของน้ำหนักวัตถุดิบ)
   const METHODS={
@@ -1589,12 +1761,13 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   function rowGrams(r){const ing=ingById(r.id);if(!ing)return 0;const u=unitsFor(ing).find(x=>x[0]===r.u)||["กรัม",1];const q=parseFloat(r.q)||0;return u[1]==='ck'?q/yieldOf(ing):q*u[1];}
   let RT=null;
   function calcRecipe(){
-    let t={k:0,p:0,c:0,f:0,g:0,ck:0,drip:0,oil:0};const yl=[];
+    let t={k:0,p:0,c:0,f:0,g:0,ck:0,drip:0,oil:0,su:0,na:0,ch:0,nx:0};const yl=[];
     const M=METHODS[curMeth()]||METHODS.stir;
     R.forEach(r=>{const ing=ingById(r.id);if(!ing)return;const g=rowGrams(r),m=g/100,y=yieldOf(ing);
       const drip=ing[6]*m*dripOf(ing),oil=g*absorbOf(ing);
       t.k+=ing[3]*m-drip*9+oil*8.84;t.p+=ing[4]*m;t.c+=ing[5]*m;t.f+=ing[6]*m-drip+oil;t.g+=g;
       t.drip+=drip;t.oil+=oil;t.ck+=g*y+oil;
+      const xx=ingX(ing);if(xx){t.su+=xx[0]*m;t.na+=xx[1]*m;t.ch+=xx[2]*m;}else if(g>0)t.nx++;
       if(y!==1&&g>0)yl.push(ing[1]+(r.u===CK?': ชั่งสุก '+fmt(g*y)+' ก. = ดิบ ~'+fmt(g)+' ก.':': ดิบ '+fmt(g)+' ก. → สุก ~'+fmt(g*y)+' ก.'));
       const el=$('kc-'+r.k);if(el)el.textContent=fmt(ing[3]*m-drip*9+oil*8.84);});
     const notes=[];
@@ -1612,6 +1785,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     $('rTot').textContent=fmt(t.k)+' kcal';$('rTotM').textContent=m(t);
     const per={k:t.k/s,p:t.p/s,c:t.c/s,f:t.f/s};
     $('rPer').textContent=fmt(per.k)+' kcal';$('rPerM').textContent=m(per);
+    $('rX').textContent=R.length?'ต่อ 1 ที่: น้ำตาล '+f1(t.su/s)+' ก. · โซเดียม '+fmt(t.na/s)+' มก. · คอเลสเตอรอล '+fmt(t.ch/s)+' มก.'+(t.nx?' (ไม่รวม '+t.nx+' วัตถุดิบที่ไม่มีข้อมูล)':''):'';
     $('rPer100').textContent=RT.cw>0?'ต่อ 100 ก. ของอาหารสุก: '+fmt(t.k/RT.cw*100)+' kcal · '+m({p:t.p/RT.cw*100,c:t.c/RT.cw*100,f:t.f/RT.cw*100})+' · น้ำหนักสุก '+fmt(RT.cw)+' ก. ('+RT.cwSrc+') · 1 ที่ ≈ '+fmt(RT.cw/s)+' ก.':'';
     $('eatU').options[1].disabled=!(RT.cw>0);if(!(RT.cw>0))$('eatU').value='serv';
   }
@@ -1638,13 +1812,14 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   $('ciAdd').addEventListener('click',()=>{const n=$('ciName').value.trim(),k=parseFloat($('ciK').value);
     if(!n||!(k>=0)){$('ciMsg').textContent='ใส่ชื่อและแคลอรี่ต่อ 100 ก. ก่อน';return;}
     const it=['c'+Date.now(),n,'ของฉัน',k,parseFloat($('ciP').value)||0,parseFloat($('ciC').value)||0,parseFloat($('ciF').value)||0,[]];
+    const ox=id=>{const v=parseFloat($(id).value);return isFinite(v)&&v>=0?v:null;},xs=[ox('ciSu'),ox('ciNa'),ox('ciCh')];if(xs.some(v=>v!=null))it.push(xs[0]||0,xs[1]||0,xs[2]||0);
     ING.push(it);store.set('kc.customIng',ING.filter(x=>x[2]==='ของฉัน'));fillDL();
     R.push({k:++rowSeq,id:it[0],q:100,u:'กรัม'});renderIngs();$('ciMsg').textContent='เพิ่ม '+n+' ลงในสูตรแล้ว (อยู่ในกลุ่ม “ของฉัน”)';});
   $('rLog').addEventListener('click',()=>{if(!RT||!R.length){$('rMsg').textContent='ยังไม่มีวัตถุดิบในสูตร';return;}
     const q=parseFloat($('eatQ').value)||0;if(q<=0){$('rMsg').textContent='ใส่จำนวนที่กินก่อน';return;}
     const byG=$('eatU').value==='g'&&RT.cw>0;const frac=byG?q/RT.cw:q/RT.s;
     const name=$('rName').value.trim()||'อาหารทำเอง';
-    addLog({name:name,unit:byG?fmt(q)+' ก.':'1 ที่',q:byG?1:q,k:RT.k*frac/(byG?1:q),p:RT.p*frac/(byG?1:q),c:RT.c*frac/(byG?1:q),f:RT.f*frac/(byG?1:q)});
+    const dv=frac/(byG?1:q);addLog({name:name,unit:byG?fmt(q)+' ก.':'1 ที่',q:byG?1:q,k:RT.k*dv,p:RT.p*dv,c:RT.c*dv,f:RT.f*dv,su:RT.su*dv,na:RT.na*dv,ch:RT.ch*dv});
     $('rMsg').textContent='เพิ่ม '+name+' แล้ว';});
   let recipes=store.get('kc.recipes',[]);
   function renderSaved(){$('savedWrap').hidden=!recipes.length;
@@ -1667,7 +1842,19 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   const pad2=n=>String(n).padStart(2,'0');
   const logKey=dt=>'kc.log.'+dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
   const isoKey=dt=>dt.getFullYear()+'-'+pad2(dt.getMonth()+1)+'-'+pad2(dt.getDate());
-  const sumLog=arr=>arr.reduce((a,x)=>{a.k+=x.k*x.q;a.p+=x.p*x.q;a.c+=x.c*x.q;a.f+=x.f*x.q;return a;},{k:0,p:0,c:0,f:0});
+  const entX=x=>{if(x.na!=null||x.su!=null)return [+x.su||0,+x.na||0,+x.ch||0];const f=FOODS.find(f=>f[0]===x.name&&f[1]===x.unit);return f?xOfFood(f):null;};
+  const sumLog=arr=>arr.reduce((a,x)=>{a.k+=x.k*x.q;a.p+=x.p*x.q;a.c+=x.c*x.q;a.f+=x.f*x.q;const e=entX(x);if(e){a.su+=e[0]*x.q;a.na+=e[1]*x.q;a.ch+=e[2]*x.q;}else a.nx++;return a;},{k:0,p:0,c:0,f:0,su:0,na:0,ch:0,nx:0});
+  const xLim=tk=>({su:Math.round(tk*0.10/4),na:2000,ch:300});
+  function xBars(tot,tk){const L=xLim(tk);
+    return [["น้ำตาล",tot.su,L.su,"ก.","var(--sug)"],["โซเดียม",tot.na,L.na,"มก.","var(--na)"],["คอเลสเตอรอล",tot.ch,L.ch,"มก.","var(--chol)"]].map(([n,v,t,u,col])=>{const pc=t>0?v/t*100:0;
+      return '<div class="prog'+(pc>100?' over':'')+'"><div class="top"><span><i class="dot" style="background:'+col+'"></i>'+n+'<span class="lim">เพดาน</span></span><span class="n">'+fmt(v)+' / '+fmt(t)+' '+u+'</span></div><div class="track"><div class="fill" style="width:'+Math.min(100,pc)+'%;background:'+(pc>100?'var(--over)':col)+'"></div></div></div>';}).join('');}
+  function xNote(tot,tk){const L=xLim(tk),o=[];
+    if(tot.na>L.na)o.push('โซเดียมเกิน '+fmt(tot.na-L.na)+' มก. (≈ น้ำปลา '+f1((tot.na-L.na)/450)+' ช้อนชา) ลดน้ำซุป น้ำจิ้ม และเครื่องปรุงมื้อถัดไป');
+    if(tot.su>L.su)o.push('น้ำตาลเกินเพดาน ลองเปลี่ยนเครื่องดื่มหวานเป็นไม่หวานหรือหวานน้อย');
+    if(tot.ch>L.ch)o.push('คอเลสเตอรอลเกิน 300 มก. ส่วนใหญ่มาจากไข่แดง เครื่องใน และอาหารทะเลบางชนิด');
+    if(tot.nx)o.push(tot.nx+' รายการไม่มีข้อมูลส่วนนี้ จึงไม่ได้นับ');
+    o.push('น้ำตาลนับรวมทั้งหมด (รวมจากผลไม้และนม) เพดาน 10% ของพลังงานตาม WHO ถ้าให้ดีควรไม่เกิน '+fmt(L.su/2)+' ก.');
+    return o.join(' · ');}
   const DOW=['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'];
   const MEAL_ORDER=["เช้า","กลางวัน","ของว่าง","เย็น"];
   const TODAY=new Date(d.getFullYear(),d.getMonth(),d.getDate());
@@ -1683,7 +1870,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   const CAD_KEY='workout-timer-v1';
   function cadSessions(dt){let h=[];try{const s=JSON.parse(localStorage.getItem(CAD_KEY)||'null');if(s&&Array.isArray(s.history))h=s.history;}catch(e){}
     const k=isoKey(dt),rest=(T.bmr||1600)/86400;
-    return h.filter(x=>x&&x.ts&&isoKey(new Date(x.ts))===k).map(x=>({ts:x.ts,sec:+x.sec||0,gross:+x.kcal||0,net:Math.max(0,(+x.kcal||0)-(+x.sec||0)*rest),rounds:x.rounds,exs:x.exs}));}
+    return h.filter(x=>x&&x.ts&&isoKey(new Date(x.ts))===k).map(x=>({ts:x.ts,sec:+x.sec||0,gross:+x.kcal||0,net:x.kAct!=null?+x.kAct:Math.max(0,(+x.kcal||0)-(+x.sec||0)*rest),rounds:x.rounds,exs:x.exs,ed:!!x.kEdited}));}
   const exKey=dt=>'kc.ex.'+isoKey(dt);
   const manualEx=dt=>store.get(exKey(dt),[]);
   const exNet=dt=>cadSessions(dt).reduce((a,x)=>a+x.net,0)+manualEx(dt).reduce((a,x)=>a+(+x.net||0),0);
@@ -1697,7 +1884,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   /* ---------- food usage (frequent / recent) ---------- */
   let FSTAT=store.get('kc.foodStats',{});
   function track(it){const key=it.name+'|'+it.unit,o=FSTAT[key]||{n:0};
-    Object.assign(o,{name:it.name,unit:it.unit,k:it.k,p:it.p,c:it.c,f:it.f,q:it.q||1,last:Date.now()});o.n++;FSTAT[key]=o;
+    Object.assign(o,{name:it.name,unit:it.unit,k:it.k,p:it.p,c:it.c,f:it.f,q:it.q||1,last:Date.now()});if(it.na!=null||it.su!=null)Object.assign(o,{su:+it.su||0,na:+it.na||0,ch:+it.ch||0});o.n++;FSTAT[key]=o;
     const ks=Object.keys(FSTAT);if(ks.length>150)ks.sort((a,b)=>FSTAT[a].last-FSTAT[b].last).slice(0,ks.length-150).forEach(k=>delete FSTAT[k]);
     store.set('kc.foodStats',FSTAT);}
   function renderQuick(){
@@ -1715,7 +1902,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     b.textContent=pl.length?'คัดลอกจาก'+(sameDay(prev,addDays(TODAY,-1))?'เมื่อวาน':' '+dayName(prev))+' ('+pl.length+' รายการ · '+fmt(sumLog(pl).k)+' kcal)':'วันก่อนหน้าไม่มีบันทึกให้คัดลอก';
   }
   $('quick').addEventListener('click',e=>{const b=e.target.closest('[data-q]');if(!b)return;const o=FSTAT[b.dataset.q];if(!o)return;
-    addLog({name:o.name,unit:o.unit,q:o.q||1,k:o.k,p:o.p,c:o.c,f:o.f});});
+    addLog(Object.assign({name:o.name,unit:o.unit,q:o.q||1,k:o.k,p:o.p,c:o.c,f:o.f},o.na!=null?{su:o.su,na:o.na,ch:o.ch}:{}));});
   $('copyPrev').addEventListener('click',()=>{const pl=store.get(logKey(addDays(viewDate,-1)),[]);if(!pl.length)return;
     pl.forEach(x=>LOG.push(Object.assign({},x,{id:Date.now()+Math.random()})));saveLog();renderLog();toast('คัดลอก '+pl.length+' รายการแล้ว');});
 
@@ -1733,9 +1920,10 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     const bars=[["พลังงาน",tot.k,tg.k,"kcal","var(--accent)"],["โปรตีน",tot.p,tg.p,"ก.","var(--pro)"],["คาร์บ",tot.c,tg.c,"ก.","var(--carb)"],["ไขมัน",tot.f,tg.f,"ก.","var(--fat)"]];
     $('prog').innerHTML=bars.map(([n,v,t,u,col])=>{const pct=t>0?v/t*100:0;
       return '<div class="prog'+(pct>105&&n!=="โปรตีน"?' over':'')+'"><div class="top"><span>'+n+'</span><span class="n">'+fmt(v)+' / '+fmt(t)+' '+u+'</span></div><div class="track"><div class="fill" style="width:'+Math.min(100,pct)+'%;background:'+col+'"></div></div></div>';}).join('');
+    $('progX').innerHTML=xBars(tot,tg.k);$('progXNote').textContent=xNote(tot,tg.k);
     const sorted=LOG.slice().sort((a,b)=>MEAL_ORDER.indexOf(a.meal)-MEAL_ORDER.indexOf(b.meal));
     $('logBody').innerHTML=sorted.length?sorted.map(x=>
-      '<tr><td><span class="mtag">'+esc(x.meal)+'</span> '+esc(x.name)+'<div class="hint n">'+esc(x.unit)+' · P '+f1(x.p*x.q)+' C '+f1(x.c*x.q)+' F '+f1(x.f*x.q)+'</div></td>'+
+      '<tr><td><span class="mtag">'+esc(x.meal)+'</span> '+esc(x.name)+'<div class="hint n">'+esc(x.unit)+' · P '+f1(x.p*x.q)+' C '+f1(x.c*x.q)+' F '+f1(x.f*x.q)+((e=>e?' · Na '+fmt(e[1]*x.q)+' มก. · น้ำตาล '+f1(e[0]*x.q)+' ก.':'')(entX(x)))+'</div></td>'+
       '<td class="n"><input type="number" class="qty" id="lq-'+String(x.id).replace('.','')+'" data-id="'+x.id+'" min="0" step="0.5" value="'+x.q+'" aria-label="จำนวน"></td>'+
       '<td class="n">'+fmt(x.k*x.q)+'</td><td><button class="btn x" type="button" data-rmlog="'+x.id+'" aria-label="ลบ '+esc(x.name)+'">×</button></td></tr>').join('')
       :'<tr><td colspan="4" class="empty">ยังไม่มีรายการของ'+dayName(viewDate)+' เลือกเมนูจากด้านซ้าย หรือกดเพิ่มด่วน</td></tr>';
@@ -1782,14 +1970,45 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   /* ---------- exercise view ---------- */
   const fmtDur=s=>{s=Math.round(s);const m=Math.floor(s/60);return m>=60?Math.floor(m/60)+' ชม. '+(m%60)+' นาที':m+':'+pad2(s%60)+' นาที';};
   $('mxA').innerHTML=exOptions(1);
+  let EXED=null; // 'c:ts' or 'm:id' being edited
+  let mxMonth=new Date(TODAY.getFullYear(),TODAY.getMonth(),1);
+  const hasEx=dt=>cadSessions(dt).length+manualEx(dt).length>0;
+  function mxSet(dt){$('mxDate').value=isoKey(dt);
+    $('mxDateTxt').textContent=sameDay(dt,TODAY)?'วันนี้ · '+dt.toLocaleDateString('th-TH',{day:'numeric',month:'short'}):sameDay(dt,addDays(TODAY,-1))?'เมื่อวาน · '+dt.toLocaleDateString('th-TH',{day:'numeric',month:'short'}):dt.toLocaleDateString('th-TH',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
+  function mxDates(){if($('mxCal').hidden)mxSet(viewDate);}
+  function renderMX(){const y=mxMonth.getFullYear(),m=mxMonth.getMonth(),first=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate(),sel=$('mxDate').value;
+    $('mxLabel').textContent=mxMonth.toLocaleDateString('th-TH',{month:'long',year:'numeric'});
+    $('mxNext').disabled=y>TODAY.getFullYear()||(y===TODAY.getFullYear()&&m>=TODAY.getMonth());
+    let h=['อา','จ','อ','พ','พฤ','ศ','ส'].map(x=>'<span class="dw">'+x+'</span>').join('');
+    for(let i=0;i<first;i++)h+='<span></span>';
+    for(let dd=1;dd<=n;dd++){const dt=new Date(y,m,dd),fut=dt>TODAY;
+      h+='<button type="button" data-md="'+dd+'"'+(fut?' disabled':'')+' class="'+(sameDay(dt,TODAY)?'today ':'')+(isoKey(dt)===sel?'sel ':'')+(!fut&&hasEx(dt)?'has':'')+'" aria-label="'+dt.toLocaleDateString('th-TH',{day:'numeric',month:'long'})+'">'+dd+'</button>';}
+    $('mxGrid').innerHTML=h;}
+  function toggleMX(open){const c=$('mxCal');open=open==null?c.hidden:open;c.hidden=!open;$('mxDateBtn').setAttribute('aria-expanded',open);
+    if(open){const d0=pISO($('mxDate').value||isoKey(viewDate));mxMonth=new Date(d0.getFullYear(),d0.getMonth(),1);renderMX();}}
+  $('mxDateBtn').addEventListener('click',()=>toggleMX());
+  $('mxPrev').addEventListener('click',()=>{mxMonth.setMonth(mxMonth.getMonth()-1);renderMX();});
+  $('mxNext').addEventListener('click',()=>{mxMonth.setMonth(mxMonth.getMonth()+1);renderMX();});
+  $('mxGrid').addEventListener('click',e=>{const b=e.target.closest('[data-md]');if(!b||b.disabled)return;mxSet(new Date(mxMonth.getFullYear(),mxMonth.getMonth(),+b.dataset.md));toggleMX(false);});
+  $('mxCal').addEventListener('click',e=>{const b=e.target.closest('[data-mq]');if(!b)return;mxSet(addDays(TODAY,+b.dataset.mq));toggleMX(false);});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('mxCal').hidden){toggleMX(false);$('mxDateBtn').focus();}});
+  function exRow(key,cls,title,sub,kc){
+    if(EXED===key)return '<div class="exrow ed"><span class="exic '+cls+'" aria-hidden="true"></span><div><b>'+title+'</b><div class="hint">'+sub+'</div></div>'+
+      '<div class="exedit"><div class="unit"><input type="number" id="exEdK" min="0" max="5000" value="'+Math.round(kc)+'" aria-label="kcal"><small>kcal</small></div>'+
+      '<select id="exEdT" aria-label="ชนิดค่า"><option value="a">Active</option><option value="t">รวม (Total)</option></select>'+
+      '<button class="btn small" type="button" data-exsave="'+key+'">บันทึก</button><button class="btn small ghost" type="button" data-excancel="1">ยกเลิก</button>'+
+      '<button class="btn small ghost" type="button" data-exdel="'+key+'" style="color:var(--over)">ลบรายการ</button></div></div>';
+    return '<div class="exrow"><span class="exic '+cls+'" aria-hidden="true"></span><div><b>'+title+'</b><div class="hint">'+sub+'</div></div><span class="n">'+fmt(kc)+' kcal</span>'+
+      '<button class="btn x" type="button" data-exedit="'+key+'" aria-label="แก้ kcal หรือลบ '+title+'" title="แก้ kcal / ลบ">✎</button></div>';}
   function renderExercise(){
     const cs=cadSessions(viewDate),me=manualEx(viewDate),tot=exNet(viewDate);
-    $('exNet').textContent=fmt(tot);$('exDay').textContent=dayName(viewDate);
+    $('exNet').textContent=fmt(tot);$('exDay').textContent=dayName(viewDate);mxDates();
     $('exCount').textContent=(cs.length+me.length)?(cs.length+me.length)+' กิจกรรม · '+fmtDur(cs.reduce((a,x)=>a+x.sec,0)+me.reduce((a,x)=>a+x.min*60,0)):'ยังไม่มีกิจกรรม';
-    const rows=cs.map(x=>({t:x.ts,h:'<div class="exrow"><span class="exic cad" aria-hidden="true"></span><div><b>จับเวลาออกกำลังกาย</b><div class="hint">'+new Date(x.ts).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+' · '+fmtDur(x.sec)+(x.rounds?' · '+x.rounds+' รอบ':'')+(x.exs?' · '+x.exs+' ท่า':'')+'</div></div><span class="n">'+fmt(x.net)+' kcal</span><span></span></div>'}))
-      .concat(me.map(x=>({t:x.id,h:'<div class="exrow"><span class="exic man" aria-hidden="true"></span><div><b>'+esc(x.name)+'</b><div class="hint">'+fmt(x.min)+' นาที · บันทึกเอง</div></div><span class="n">'+fmt(x.net)+' kcal</span><button class="btn x" type="button" data-rmex="'+x.id+'" aria-label="ลบ '+esc(x.name)+'">×</button></div>'})))
+    const rows=cs.map(x=>({t:x.ts,h:exRow('c:'+x.ts,'cad','จับเวลาออกกำลังกาย',new Date(x.ts).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+' · '+fmtDur(x.sec)+(x.rounds?' · '+x.rounds+' รอบ':'')+(x.exs?' · '+x.exs+' ท่า':'')+(x.ed?' · แก้ตามนาฬิกา':''),x.net)}))
+      .concat(me.map(x=>({t:x.id,h:exRow('m:'+x.id,'man',esc(x.name),fmt(x.min)+' นาที · '+(x.src==='watch'?'kcal จากนาฬิกา':'บันทึกเอง'),x.net)})))
       .sort((a,b)=>a.t-b.t).map(x=>x.h).join('');
     $('exList2').innerHTML=rows||'<div class="empty">ยังไม่มีการออกกำลังกายของ'+dayName(viewDate)+' เริ่มจับเวลา หรือบันทึกกิจกรรมเอง</div>';
+    const ek=$('exEdK');if(ek&&document.activeElement!==ek){ek.focus();ek.select();}
     $('adjEx').checked=ADJ;
     const trk=trkFor(viewDate);if(document.activeElement!==$('trkIn'))$('trkIn').value=trk||'';$('trkClear').hidden=!trk;
     document.querySelector('.trk').classList.toggle('on',trk>0);
@@ -1803,18 +2022,111 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   $('trkIn').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('trkSave').click();}});
   $('trkClear').addEventListener('click',()=>{try{localStorage.removeItem(trkKey(viewDate));}catch(e){}$('trkIn').value='';renderLog();});
   $('adjEx').addEventListener('change',()=>{ADJ=$('adjEx').checked;store.set('kc.adjEx',ADJ);renderLog();});
-  $('mxA').addEventListener('change',mxCalc);$('mxMin').addEventListener('input',mxCalc);
-  function mxCalc(){const a=+$('mxA').value,m=parseFloat($('mxMin').value)||0,w=val('weight');$('mxOut').textContent=m>0?'≈ '+fmt((EX[a][1]-1)*w*m/60)+' kcal (หักพลังงานขณะพักแล้ว)':'';}
+  $('mxA').addEventListener('change',mxCalc);$('mxMin').addEventListener('input',mxCalc);$('mxK').addEventListener('input',mxCalc);$('mxKType').addEventListener('change',mxCalc);
+  const restPerSec=()=>(T.bmr||1600)/86400;
+  function mxNet(){const a=+$('mxA').value,m=parseFloat($('mxMin').value)||0,k=parseFloat($('mxK').value);
+    if(k>=0&&$('mxK').value!=='')return {net:$('mxKType').value==='a'?k:Math.max(0,k-m*60*restPerSec()),src:'watch'};
+    return {net:(EX[a][1]-1)*val('weight')*m/60,src:'met'};}
+  function mxCalc(){const m=parseFloat($('mxMin').value)||0,hasK=$('mxK').value!=='';$('mxKTypeBox').hidden=!hasK;const r=mxNet();
+    $('mxOut').textContent=m>0||hasK?'≈ '+fmt(r.net)+' kcal สุทธิ'+(r.src==='watch'?' (จากนาฬิกา'+($('mxKType').value==='t'?' หักพลังงานขณะพัก '+fmt(m*60*restPerSec())+' kcal':'')+')':' (ประมาณจาก MET หักพลังงานขณะพักแล้ว)'):'';}
   $('mxAdd').addEventListener('click',()=>{const a=+$('mxA').value,m=parseFloat($('mxMin').value)||0;if(!(m>0)){$('mxOut').textContent='ใส่จำนวนนาทีก่อน';return;}
-    const arr=manualEx(viewDate);arr.push({id:Date.now(),a,name:EX[a][0],min:m,net:(EX[a][1]-1)*val('weight')*m/60});store.set(exKey(viewDate),arr);
-    renderLog();toast('บันทึก '+EX[a][0]+' '+fmt(m)+' นาทีแล้ว');});
-  $('exList2').addEventListener('click',e=>{const b=e.target.closest('[data-rmex]');if(!b)return;store.set(exKey(viewDate),manualEx(viewDate).filter(x=>String(x.id)!==b.dataset.rmex));renderLog();});
+    const dk=$('mxDate').value||isoKey(viewDate),dt=pISO(dk),r=mxNet(),key='kc.ex.'+dk;
+    const arr=store.get(key,[]);arr.push({id:Date.now(),a,name:EX[a][0],min:m,net:r.net,src:r.src});store.set(key,arr);
+    $('mxK').value='';$('mxKTypeBox').hidden=true;$('mxOut').textContent='';
+    if(!sameDay(dt,viewDate))setDay(dt);else renderLog();
+    toast('บันทึก '+EX[a][0]+' '+fmt(m)+' นาที ('+dayName(dt)+') แล้ว');});
+  $('exList2').addEventListener('click',e=>{
+    const ed=e.target.closest('[data-exedit]');if(ed){EXED=ed.dataset.exedit;renderExercise();return;}
+    if(e.target.closest('[data-excancel]')){EXED=null;renderExercise();return;}
+    const sv=e.target.closest('[data-exsave]');
+    if(sv){const v=parseFloat($('exEdK').value),type=$('exEdT').value,[kind,id]=sv.dataset.exsave.split(':');
+      if(!(v>=0&&v<=5000)){toast('ใส่ค่าระหว่าง 0–5,000 kcal');return;}
+      if(kind==='c'){if(!(window.__cadSetKcal&&window.__cadSetKcal(+id,v,type)))toast('หารายการนี้ไม่เจอ');}
+      else{const arr=manualEx(viewDate),it=arr.find(x=>String(x.id)===id);if(it){it.net=type==='a'?v:Math.max(0,v-it.min*60*restPerSec());it.src='watch';store.set(exKey(viewDate),arr);}}
+      EXED=null;renderLog();toast('แก้ kcal แล้ว');return;}
+    const dl=e.target.closest('[data-exdel]');
+    if(dl){if(dl.dataset.arm!=='1'){dl.dataset.arm='1';dl.textContent='กดอีกครั้งเพื่อลบ';return;}
+      const [kind,id]=dl.dataset.exdel.split(':');
+      if(kind==='c'){if(window.__cadDelete)window.__cadDelete(+id);}else store.set(exKey(viewDate),manualEx(viewDate).filter(x=>String(x.id)!==id));
+      EXED=null;renderLog();toast('ลบรายการแล้ว');}
+  });
+  $('exList2').addEventListener('keydown',e=>{if(e.target.id==='exEdK'&&e.key==='Enter'){e.preventDefault();const b=document.querySelector('[data-exsave]');if(b)b.click();}if(e.key==='Escape'&&EXED){EXED=null;renderExercise();}});
   // timer bridge (timer module lives in this page)
   function sendProfile(){if(window.__cadSync)window.__cadSync({sex:radio('sex'),age:val('age'),cm:val('height'),kg:val('weight')});}
   addEventListener('cadence-session',()=>{renderLog();toast('บันทึกการออกกำลังกายแล้ว');});
 
   /* ---------- dashboard ---------- */
   let W=store.get('kc.weights',{});
+  /* ---------- goal weight plan ----------
+     Safe rate: 0.5–1% of body weight per week (Helms et al. 2014, JISSN; ACSM), ≈0.5–1 kg/week (NHS, NICE CG189; CDC 1–2 lb).
+     Lean gain: ≈0.25–0.5% per week. 1 kg body fat ≈ 7,700 kcal. */
+  const pISO=k=>{const a=k.split('-').map(Number);return new Date(a[0],a[1]-1,a[2]);};
+  const fdY=dt=>dt.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'});
+  let GP=store.get('kc.goalPlan',null);
+  function goalState(){
+    const tgt=val('goalW');if(!(tgt>=30&&tgt<=250))return null;
+    if(!GP||Math.abs(GP.target-tgt)>0.01){GP={target:tgt,startW:val('weight'),start:isoKey(TODAY)};store.set('kc.goalPlan',GP);}
+    const dir=GP.startW>GP.target+0.05?1:GP.startW<GP.target-0.05?-1:0;
+    const rate=(T.tdee-T.kcal)*7/7700; // kg lost per week (negative = gain)
+    const r=dir*rate; // progress toward goal per week
+    const s0=pISO(GP.start);
+    const planAt=dt=>{const wk=(dt-s0)/6048e5;if(dir===0||r<=0)return GP.startW;const v=GP.startW-dir*r*wk;return dir>0?Math.max(GP.target,v):Math.min(GP.target,v);};
+    const ks=Object.keys(W).sort(),lastK=ks.length?ks[ks.length-1]:null;
+    const cur=val('weight');
+    return {tgt:GP.target,dir,rate,r,s0,planAt,cur,lastK,lastW:lastK?+W[lastK]:null};
+  }
+  function renderGoal(){
+    const g=goalState(),box=$('gwBody');$('gwReset').hidden=!g;
+    if(!g){box.innerHTML='<p class="hint" style="color:var(--ink)">ใส่ <b>น้ำหนักเป้าหมาย</b> ในช่องด้านซ้าย (ใต้ตัวเลือกเป้าหมาย) ระบบจะบอกว่าแต่ละสัปดาห์ควรอยู่ที่เท่าไหร่ ช่วงไหนปลอดภัย และคาดว่าจะถึงเป้าวันไหน</p>';return;}
+    const h=val('height'),m2=Math.pow(h/100,2),tBmi=h>0?g.tgt/m2:0,cur=g.cur,diff=cur-g.tgt;
+    const safeLo=cur*0.005,safeHi=cur*0.01,gainHi=cur*0.005;
+    const pct=cur>0?Math.abs(g.rate)/cur*100:0;
+    const out=[],warns=[];
+    const kv=(l,v,sm)=>'<div><span>'+l+'</span><b class="n">'+v+'</b>'+(sm?'<small>'+sm+'</small>':'')+'</div>';
+    let eta=null,weeks=null;
+    if(Math.abs(diff)<0.05){out.push(kv('สถานะ','ถึงเป้าแล้ว','รักษาน้ำหนักต่อ'));}
+    else if(g.dir!==0&&g.r>0.01&&Math.sign(diff)===g.dir){weeks=Math.abs(diff)/g.r;eta=addDays(TODAY,Math.ceil(weeks*7));}
+    const lose=diff>0;
+    out.unshift(kv('น้ำหนักตอนนี้',f1(cur)+' กก.',g.lastK?'ชั่งล่าสุด '+fdY(pISO(g.lastK)):'จากข้อมูลของคุณ'),
+      kv('เป้าหมาย',f1(g.tgt)+' กก.','BMI '+tBmi.toFixed(1)+' · '+(lose?'ลดอีก ':'เพิ่มอีก ')+f1(Math.abs(diff))+' กก.'),
+      kv('ความเร็วตามแผน',(g.rate>0.005?'−':g.rate<-0.005?'+':'')+f1(Math.abs(g.rate))+' กก.','ต่อสัปดาห์ · '+pct.toFixed(2).replace(/0$/,'')+'% ของน้ำหนักตัว · '+(T.kcal<=T.tdee?'กินขาด ':'กินเกิน ')+fmt(Math.abs(T.tdee-T.kcal))+' kcal/วัน'),
+      kv('คาดว่าจะถึงเป้า',eta?fdY(eta):'–',eta?'อีกประมาณ '+(weeks<8?Math.ceil(weeks*7)+' วัน ('+f1(weeks)+' สัปดาห์)':Math.ceil(weeks)+' สัปดาห์ (~'+f1(weeks/4.35)+' เดือน)'):'ยังคำนวณไม่ได้'));
+    // safety
+    let safeCls='',safeTxt;
+    if(lose){
+      const fastW=Math.log(g.tgt/cur)/Math.log(0.99),fastD=addDays(TODAY,Math.ceil(fastW*7));
+      safeTxt='<b>ช่วงลดที่ปลอดภัยสำหรับคุณ:</b> '+f1(safeLo)+'–'+f1(safeHi)+' กก./สัปดาห์ (0.5–1% ของน้ำหนักตัว) ลดเร็วกว่านี้เสี่ยงเสียกล้ามเนื้อ นิ่วในถุงน้ำดี ขาดสารอาหาร และน้ำหนักเด้งกลับ · ถ้าลดเร็วสุดที่ยังปลอดภัย (1%/สัปดาห์) จะถึงเป้าเร็วสุดประมาณ <b>'+fdY(fastD)+'</b>';
+      if(g.rate>safeHi+0.01){safeCls='bad';warns.push('ความเร็วตามแผน '+f1(g.rate)+' กก./สัปดาห์ เกิน 1% ของน้ำหนักตัว ควรเลือก "ลดช้า"');}
+      else if(g.rate>=safeLo-0.01)safeTxt+=' · <b>แผนตอนนี้อยู่ในช่วงแนะนำ</b>';
+      else if(g.rate>0.01)safeTxt+=' · แผนตอนนี้ช้ากว่าช่วงแนะนำเล็กน้อย ปลอดภัยและรักษากล้ามได้ดี แต่ใช้เวลานานขึ้น';
+      if(g.dir>0&&g.rate<=0.01)warns.push('เป้าหมายคือลดน้ำหนัก แต่ตอนนี้เลือก "'+goals[radio('goal')]+'" เลือก "ลดช้า" หรือ "ลดเร็ว" เพื่อให้ระบบคำนวณวันถึงเป้า');
+    }else{
+      safeTxt='<b>ช่วงเพิ่มน้ำหนักแบบได้กล้าม:</b> ไม่เกิน '+f1(gainHi)+' กก./สัปดาห์ (≈0.25–0.5% ของน้ำหนักตัว) เร็วกว่านี้ส่วนใหญ่จะเป็นไขมัน ควรฝึกเวทควบคู่';
+      if(-g.rate>gainHi+0.01){safeCls='bad';warns.push('ความเร็วเพิ่มน้ำหนักตามแผนเร็วเกินไป');}
+      if(g.dir<0&&g.rate>=-0.01)warns.push('เป้าหมายคือเพิ่มน้ำหนัก แต่ตอนนี้เลือก "'+goals[radio('goal')]+'" เลือก "เพิ่มกล้าม" เพื่อให้ระบบคำนวณวันถึงเป้า');
+    }
+    if(tBmi&&tBmi<18.5){safeCls='bad';warns.push('น้ำหนักเป้าหมายทำให้ BMI '+tBmi.toFixed(1)+' ต่ำกว่า 18.5 (น้ำหนักน้อย) น้ำหนักที่เหมาะกับส่วนสูงนี้คือ '+f1(18.5*m2)+'–'+f1(22.9*m2)+' กก.');}
+    // on-track
+    let track='';
+    if(g.lastK&&g.dir!==0&&g.r>0.01){const lk=pISO(g.lastK);if(lk>=g.s0){const pw=g.planAt(lk),dv=(g.lastW-pw)*g.dir;
+      track=Math.abs(dv)<=0.5?'<span class="pill good">ตามแผน</span> น้ำหนักจริง '+f1(g.lastW)+' กก. แผนวันนั้น '+f1(pw)+' กก.':dv>0?'<span class="pill warn">ช้ากว่าแผน '+f1(dv)+' กก.</span> ลองปรับเทียบ TDEE จากน้ำหนักจริงในแดชบอร์ด':'<span class="pill good">เร็วกว่าแผน '+f1(-dv)+' กก.</span>';
+      const wk=(lk-g.s0)/6048e5;if(wk>=2&&g.dir>0){const act=(GP.startW-g.lastW)/wk;if(act>GP.startW*0.01+0.05)warns.push('ช่วงที่ผ่านมาลดจริง '+f1(act)+' กก./สัปดาห์ เร็วกว่า 1% ของน้ำหนักตัว ควรกินเพิ่มเล็กน้อย');}}}
+    // weekly table
+    let rows='';
+    if(g.dir!==0&&g.r>0.01){const tot=Math.ceil(Math.abs(GP.startW-g.tgt)/g.r),step=tot>104?4:1,nowWk=Math.floor((TODAY-g.s0)/6048e5);
+      for(let n=0;n<=tot+step-1;n+=step){const nn=Math.min(n,tot),dt=addDays(g.s0,nn*7),pw=g.planAt(dt),lim=g.dir>0?Math.max(g.tgt,GP.startW*Math.pow(0.99,nn)):Math.min(g.tgt,GP.startW*Math.pow(1.005,nn));
+        let act=null;for(let o=0;o<=3&&act==null;o++){for(const sg of [0,-1,1]){const k=isoKey(addDays(dt,o*sg||0));if(W[k]!=null){act=+W[k];break;}}}
+        const ac=act==null?'<td class="n">–</td>':'<td class="n '+(Math.abs(act-pw)<=0.5||(act-pw)*g.dir<0?'ok':'bad')+'">'+f1(act)+'</td>';
+        rows+='<tr'+(nn===nowWk||(nowWk>nn&&nowWk<nn+step)?' class="now"':'')+'><td>'+(nn===0?'เริ่ม':'สป. '+nn)+'</td><td>'+dt.toLocaleDateString('th-TH',{day:'numeric',month:'short'})+((dt.getMonth()===0&&dt.getDate()<=7)||nn===0?' '+String(dt.getFullYear()+543).slice(2):'')+'</td><td class="n">'+f1(pw)+'</td><td class="n">'+f1(lim)+'</td>'+ac+'</tr>';
+        if(nn>=tot)break;}}
+    box.innerHTML='<div class="gw-kv">'+out.join('')+'</div>'+
+      (track?'<p class="hint" style="color:var(--ink);margin:0 0 10px">'+track+'</p>':'')+
+      '<div class="gw-safe '+safeCls+'">'+safeTxt+(warns.length?'<br>⚠ '+warns.join('<br>⚠ '):'')+'</div>'+
+      (rows?'<div class="gw-tbl"><table><thead><tr><th>สัปดาห์</th><th>วันที่</th><th class="n">ตามแผน</th><th class="n">'+(g.dir>0?'ไม่ต่ำกว่า':'ไม่เกิน')+'</th><th class="n">ชั่งจริง</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'')+
+      '<p class="xnote">แผนเริ่มนับ '+fdY(g.s0)+' ที่ '+f1(GP.startW)+' กก. · คอลัมน์ "'+(g.dir>0?'ไม่ต่ำกว่า':'ไม่เกิน')+'" คือขีดปลอดภัย '+(g.dir>0?'1%':'0.5%')+' ของน้ำหนักตัวต่อสัปดาห์ · 1–2 สัปดาห์แรกมักลดเร็วกว่าแผนเพราะน้ำและไกลโคเจน และช่วงหลังจะช้าลงเพราะร่างกายปรับตัว ให้ชั่งทุกเช้าแล้วดูค่าเฉลี่ยรายสัปดาห์ · อ้างอิง: Helms et al. 2014 (JISSN), NHS/NICE, CDC</p>';
+  }
+  $('gwReset').addEventListener('click',()=>{if(!(val('goalW')>=30))return;GP={target:val('goalW'),startW:val('weight'),start:isoKey(TODAY)};store.set('kc.goalPlan',GP);renderGoal();renderDash();toast('เริ่มแผนใหม่จาก '+f1(GP.startW)+' กก. วันนี้');});
+
   function niceStep(x){const p=Math.pow(10,Math.floor(Math.log10(x))),m=x/p;return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p;}
   function renderDash(){
     const TL=logFor(TODAY),tg=dayMacroT(TODAY),tot=sumLog(TL),r=84,C=2*Math.PI*r,pct=tg.k>0?tot.k/tg.k:0,left=tg.k-tot.k;
@@ -1826,6 +2138,7 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     $('dEaten').textContent=fmt(tot.k);$('dTarget').textContent=fmt(tg.k);$('dEx').textContent=(exNet(TODAY)>0?'+':'')+fmt(exNet(TODAY));$('dTdee').textContent=fmt(T.tdee);
     $('dMacros').innerHTML=[["โปรตีน",tot.p,tg.p,"var(--pro)"],["คาร์บ",tot.c,tg.c,"var(--carb)"],["ไขมัน",tot.f,tg.f,"var(--fat)"]].map(([n,v,t,col])=>{const pc=t>0?v/t*100:0;
       return '<div class="prog'+(pc>105&&n!=="โปรตีน"?' over':'')+'"><div class="top"><span><i class="dot" style="background:'+col+'"></i>'+n+'</span><span class="n">'+fmt(v)+' / '+fmt(t)+' ก.</span></div><div class="track"><div class="fill" style="width:'+Math.min(100,pc)+'%;background:'+col+'"></div></div></div>';}).join('');
+    $('dX').innerHTML=xBars(tot,tg.k);$('dXNote').textContent=xNote(tot,tg.k);
     $('dBmr').textContent=fmt(T.bmr);$('dPal').textContent=T.bmr?(T.tdee/T.bmr).toFixed(2):'–';
     const h=val('height'),w=val('weight'),bmi=h>0?w/Math.pow(h/100,2):0;
     $('dBmi').textContent=bmi?bmi.toFixed(1):'–';$('dBmiCat').textContent=$('bmiCat').textContent;
@@ -1853,18 +2166,33 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     svg.appendChild(svgEl('text',{x:ml+6,y:y(T.kcal)-6,'text-anchor':'start',class:'val halo'},'เป้าพื้นฐาน '+fmt(T.kcal)));
     const logged=days.filter(x=>x.k>0);$('wkAvg').textContent=logged.length?'เฉลี่ย '+fmt(logged.reduce((a,x)=>a+x.k,0)/logged.length)+' kcal/วัน · บันทึก '+logged.length+'/7 วัน':'ยังไม่มีบันทึกใน 7 วันนี้';
   }
+  function goalLine(){const g=goalState(),el=$('wGoal');if(!g){el.innerHTML='<a href="#target" data-view="target" style="color:var(--sage-deep)">ตั้งน้ำหนักเป้าหมาย</a> เพื่อดูแผนรายสัปดาห์และวันที่ถึงเป้า';return;}
+    const diff=g.cur-g.tgt;if(Math.abs(diff)<0.05){el.textContent='ถึงน้ำหนักเป้าหมาย '+f1(g.tgt)+' กก. แล้ว';return;}
+    let t='เป้า '+f1(g.tgt)+' กก. · '+(diff>0?'ลด':'เพิ่ม')+'อีก '+f1(Math.abs(diff))+' กก.';
+    if(g.dir!==0&&g.r>0.01&&Math.sign(diff)===g.dir){const wk=Math.abs(diff)/g.r;t+=' · คาดถึง <b>'+fdY(addDays(TODAY,Math.ceil(wk*7)))+'</b> (~'+Math.ceil(wk)+' สัปดาห์)';
+      if(g.lastK&&pISO(g.lastK)>=g.s0){const pw=g.planAt(pISO(g.lastK)),dv=(g.lastW-pw)*g.dir;t+=' · '+(Math.abs(dv)<=0.5?'<span class="pill good">ตามแผน</span>':dv>0?'<span class="pill warn">ช้ากว่าแผน '+f1(dv)+' กก.</span>':'<span class="pill good">เร็วกว่าแผน '+f1(-dv)+' กก.</span>');}}
+    else t+=' · เลือกความเร็วในหน้าตั้งเป้าหมายเพื่อคำนวณวันถึงเป้า';
+    el.innerHTML=t;}
   function drawWeight(){
-    const svg=$('wtChart');svg.innerHTML='';const keys=Object.keys(W).sort().slice(-30);
+    const svg=$('wtChart');svg.innerHTML='';goalLine();const keys=Object.keys(W).sort().slice(-30);
     const latest=keys.length?W[keys[keys.length-1]]:null;
     $('wLatest').textContent=latest!=null?f1(latest)+' กก.':'–';
     if(keys.length<2){$('wChange').textContent='บันทึกน้ำหนักอย่างน้อย 2 วันเพื่อดูแนวโน้ม';svg.appendChild(svgEl('text',{x:300,y:95,'text-anchor':'middle',class:'axis'},'ยังไม่มีข้อมูลพอสำหรับกราฟ'));return;}
     const Wd=600,H=190,ml=40,mr=16,mt=14,mb=28,pw=Wd-ml-mr,ph=H-mt-mb;
-    const vals=keys.map(k=>W[k]),lo=Math.floor(Math.min(...vals)-0.5),hi=Math.ceil(Math.max(...vals)+0.5);
+    const g=goalState();
+    const vals=keys.map(k=>W[k]),ext=vals.slice();if(g&&Math.abs(g.tgt-Math.min(...vals))<=5&&Math.abs(g.tgt-Math.max(...vals))<=8)ext.push(g.tgt);
+    const lo=Math.floor(Math.min(...ext)-0.5),hi=Math.ceil(Math.max(...ext)+0.5);
     const t0=new Date(keys[0]).getTime(),t1=new Date(keys[keys.length-1]).getTime(),span=Math.max(1,t1-t0);
     const X=k=>ml+(new Date(k).getTime()-t0)/span*pw,Y=v=>mt+ph-(v-lo)/(hi-lo)*ph;
     const st=niceStep((hi-lo)/3)||1;for(let v=lo;v<=hi+1e-9;v+=st){svg.appendChild(svgEl('line',{x1:ml,x2:Wd-mr,y1:Y(v),y2:Y(v),class:'grid'}));svg.appendChild(svgEl('text',{x:ml-8,y:Y(v)+4,'text-anchor':'end',class:'axis'},f1(v)));}
     const pts=keys.map(k=>[X(k),Y(W[k])]);
     svg.appendChild(svgEl('path',{d:'M'+pts.map(p=>p.join(',')).join('L')+'L'+pts[pts.length-1][0]+','+(mt+ph)+'L'+pts[0][0]+','+(mt+ph)+'Z',class:'area'}));
+    let showLeg=false;$('wLegP').hidden=true;$('wLegG').hidden=true;
+    if(g){const ps=Math.max(t0,new Date(GP.start).getTime());
+      if(g.dir!==0&&g.r>0.01&&ps<t1){const pp=[];for(let i=0;i<=12;i++){const tm=ps+(t1-ps)*i/12,off=new Date(tm).getTimezoneOffset()*6e4,pv=g.planAt(new Date(tm+off));if(pv>=lo&&pv<=hi)pp.push([ml+(tm-t0)/span*pw,Y(pv)]);}
+        if(pp.length>1){svg.appendChild(svgEl('path',{d:'M'+pp.map(p=>p.join(',')).join('L'),class:'pline'}));showLeg=true;$('wLegP').hidden=false;}}
+      if(g.tgt>=lo&&g.tgt<=hi){svg.appendChild(svgEl('line',{x1:ml,x2:Wd-mr,y1:Y(g.tgt),y2:Y(g.tgt),class:'gline'}));svg.appendChild(svgEl('text',{x:Wd-mr-4,y:Y(g.tgt)-5,'text-anchor':'end',class:'val halo'},'เป้า '+f1(g.tgt)));showLeg=true;$('wLegG').hidden=false;}}
+    $('wLegend').hidden=!showLeg;
     svg.appendChild(svgEl('path',{d:'M'+pts.map(p=>p.join(',')).join('L'),class:'wline'}));
     keys.forEach((k,i)=>{const c=svgEl('circle',{cx:pts[i][0],cy:pts[i][1],r:i===keys.length-1?5:9,class:i===keys.length-1?'wlast':'whit'});c.appendChild(svgEl('title',{},new Date(k).toLocaleDateString('th-TH',{day:'numeric',month:'short'})+': '+f1(W[k])+' กก.'));svg.appendChild(c);});
     const fd=k=>new Date(k).toLocaleDateString('th-TH',{day:'numeric',month:'short'});
@@ -1893,17 +2221,23 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
 
   /* ---------- water ---------- */
   const waterKey=dt=>'kc.water.'+isoKey(dt);
-  const CUP='<svg viewBox="0 0 24 30" aria-hidden="true"><path class="cf" d="M5.2 12h13.6l-1.3 14.2a2 2 0 0 1-2 1.8H8.5a2 2 0 0 1-2-1.8z"/><path class="co" d="M3.5 3h17l-2 24.2a2 2 0 0 1-2 1.8H7.5a2 2 0 0 1-2-1.8z"/></svg>';
-  function renderWater(){
-    const ml=+store.get(waterKey(TODAY),0)||0,goalL=Math.max(1.5,val('weight')*0.033),goalG=Math.ceil(goalL*4),n=Math.round(ml/250);
+  const waterGoal=()=>Math.max(1.5,val('weight')*0.033);
+  function renderWater(live){
+    const ml=+store.get(waterKey(TODAY),0)||0,goalL=waterGoal(),goal=goalL*1000,rg=$('wtrRange');
+    const max=Math.max(4000,Math.ceil((goal+1000)/500)*500,Math.ceil((ml+500)/500)*500);
+    if(+rg.max!==max)rg.max=max;if(!live)rg.value=ml;
+    rg.style.setProperty('--pct',(ml/max*100)+'%');
+    $('wtrMark').style.left='calc(14px + '+(goal/max)+' * (100% - 28px))';
     $('wtrTxt').textContent=(ml/1000).toFixed(2).replace(/0$/,'')+' / '+goalL.toFixed(1)+' ลิตร';
-    $('wtrSub').textContent=n>=goalG?'ดื่มครบเป้าแล้ววันนี้':'อีก '+(goalG-n)+' แก้ว (แก้วละ 250 มล.)';
-    $('glasses').innerHTML=Array.from({length:Math.max(goalG,n)},(_,i)=>'<button type="button" class="cup'+(i<n?' on':'')+'" data-g="'+(i+1)+'" aria-label="ดื่มแล้ว '+(i+1)+' แก้ว">'+CUP+'</button>').join('');
+    $('wtrSub').textContent=ml>=goal?'ดื่มครบเป้าแล้ววันนี้':'อีก '+fmt(Math.ceil((goal-ml)/50)*50)+' มล.';
+    $('wtrPct').textContent=Math.round(ml/goal*100)+'%';
+    rg.setAttribute('aria-valuetext',fmt(ml)+' มิลลิลิตร');
+    $('wtrScale').innerHTML='<span>0</span><span>'+(max/2000).toFixed(max%2000?2:0).replace(/\.?0+$/,'')+' ล.</span><span>'+(max/1000)+' ล.</span>';
   }
-  function setWater(ml){store.set(waterKey(TODAY),Math.max(0,ml));renderWater();renderWeekSum();}
-  $('glasses').addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(!b)return;const g=+b.dataset.g,cur=Math.round((+store.get(waterKey(TODAY),0)||0)/250);setWater((g===cur?g-1:g)*250);});
-  $('wtrPlus').addEventListener('click',()=>setWater((+store.get(waterKey(TODAY),0)||0)+250));
-  $('wtrMinus').addEventListener('click',()=>setWater((+store.get(waterKey(TODAY),0)||0)-250));
+  function setWater(ml,live){store.set(waterKey(TODAY),Math.max(0,Math.round(ml)));renderWater(live);if(!live)renderWeekSum();}
+  $('wtrRange').addEventListener('input',e=>setWater(+e.target.value,true));
+  $('wtrRange').addEventListener('change',e=>setWater(+e.target.value));
+  document.querySelector('.wchips').addEventListener('click',e=>{const b=e.target.closest('[data-wadd]');if(!b)return;setWater((+store.get(waterKey(TODAY),0)||0)+(+b.dataset.wadd));if(navigator.vibrate)navigator.vibrate(15);});
 
   /* ---------- weekly summary ---------- */
   function renderWeekSum(){
@@ -1919,8 +2253,17 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
       row('ตรงเป้า (±10%)',onT+' วัน',over?'เกิน '+over+' วัน':'',over?'warn':'good')+
       row('โปรตีนเฉลี่ย',lg.length?Math.round(pPct)+'% ของเป้า':'–',lg.length?(pPct>=90?'ถึงเป้า':'ยังขาด'):'',pPct>=90?'good':'warn')+
       row('ออกกำลังกาย',days.reduce((a,x)=>a+x.ex,0)+' ครั้ง',fmt(days.reduce((a,x)=>a+x.exk,0))+' kcal','')+
-      row('น้ำเฉลี่ย',(avg(days.map(x=>x.w))/1000).toFixed(1)+' ลิตร/วัน','');
+      row('น้ำเฉลี่ย',(avg(days.map(x=>x.w))/1000).toFixed(1)+' ลิตร/วัน','')+
+      (lg.length?(()=>{const naO=lg.filter(x=>x.s.na>2000).length,suO=lg.filter(x=>x.s.su>xLim(x.tg.k).su).length,chO=lg.filter(x=>x.s.ch>300).length;
+        return row('โซเดียมเฉลี่ย',fmt(avg(lg.map(x=>x.s.na)))+' มก./วัน',naO?'เกิน '+naO+' วัน':'ไม่เกิน',naO?'warn':'good')+
+          row('น้ำตาลเฉลี่ย',fmt(avg(lg.map(x=>x.s.su)))+' ก./วัน',suO?'เกิน '+suO+' วัน':'ไม่เกิน',suO?'warn':'good')+
+          row('คอเลสเตอรอลเฉลี่ย',fmt(avg(lg.map(x=>x.s.ch)))+' มก./วัน',chO?'เกิน '+chO+' วัน':'ไม่เกิน',chO?'warn':'good');})():'');
   }
+
+  /* ---------- native app bridge (iOS app) ---------- */
+  const NB=()=>{try{return window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.balance||null;}catch(e){return null;}};
+  function saveFile(name,text){if(window.BalanceAndroid){window.BalanceAndroid.saveFile(name,text);return;}const nb=NB();if(nb){nb.postMessage({type:'save',name,text});return;}
+    const blob=new Blob([text],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);}
 
   /* ---------- backup ---------- */
   const BK_KEYS=k=>k.startsWith('kc.')||k===CAD_KEY;
@@ -1929,9 +2272,8 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
     $('bkInfo').textContent='มีบันทึกอาหาร '+n+' วัน · '+(lb?'สำรองล่าสุด '+(ago===0?'วันนี้':ago+' วันก่อน'):'ยังไม่เคยสำรอง');
     $('bkCard').classList.toggle('due',n>0&&(!lb||ago>=7));}
   $('bkExport').addEventListener('click',()=>{const data={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(BK_KEYS(k))data[k]=localStorage.getItem(k);}}catch(e){}
-    const blob=new Blob([JSON.stringify({app:'balance',v:2,saved:new Date().toISOString(),data},null,1)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='balance-backup-'+isoKey(new Date()).replace(/-/g,'')+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-    store.set('kc.lastBackup',Date.now());renderBackup();$('bkMsg').textContent='ดาวน์โหลดไฟล์สำรองแล้ว เก็บไว้ใน Google Drive หรือส่งเข้าอีเมลตัวเองได้';});
+    saveFile('balance-backup-'+isoKey(new Date()).replace(/-/g,'')+'.json',JSON.stringify({app:'balance',v:2,saved:new Date().toISOString(),data},null,1));
+    store.set('kc.lastBackup',Date.now());renderBackup();$('bkMsg').textContent=(NB()||window.BalanceAndroid)?'เลือกที่เก็บไฟล์ เช่น บันทึกลงไฟล์ (Files) หรือ iCloud Drive':'ดาวน์โหลดไฟล์สำรองแล้ว เก็บไว้ใน Google Drive หรือส่งเข้าอีเมลตัวเองได้';});
   let bkPending=null;
   $('bkImport').addEventListener('click',()=>{if(!bkPending){$('bkFile').click();return;}
     const d0=bkPending;bkPending=null;try{Object.keys(d0).forEach(k=>{if(BK_KEYS(k))localStorage.setItem(k,d0[k]);});}catch(e){$('bkMsg').textContent='นำเข้าไม่สำเร็จ พื้นที่เก็บข้อมูลของเบราว์เซอร์อาจเต็ม';return;}
@@ -1950,15 +2292,19 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('installBtn').hidden=false;});
   addEventListener('appinstalled',()=>{$('installBtn').hidden=true;toast('ติดตั้งแอปแล้ว');});
   $('installBtn').addEventListener('click',async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice;}catch(e){}installEvt=null;$('installBtn').hidden=true;});
-  if(/iPad|iPhone|iPod/.test(navigator.userAgent)&&!navigator.standalone)$('iosTip').hidden=false;
-  if('serviceWorker' in navigator&&location.protocol==='https:'&&!/claude\.ai|claudeusercontent/.test(location.hostname)){
+  if(/iPad|iPhone|iPod/.test(navigator.userAgent)&&!navigator.standalone&&!NB())$('iosTip').hidden=false;
+  if('serviceWorker' in navigator&&location.protocol==='https:'&&!window.BalanceAndroid&&!/claude\.ai|claudeusercontent|appassets\.androidplatform/.test(location.hostname)){
     addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 
   /* ---------- barcode ---------- */
   let scanStream=null,scanTimer=null,zxReader=null,curProd=null,BC=store.get('kc.barcodes',{});
-  function openScan(){$('scanModal').hidden=false;$('scanRes').innerHTML='';$('scanCode').value='';startCam();}
+  function openScan(){$('scanModal').hidden=false;$('scanRes').innerHTML='';$('scanCode').value='';
+    if(NB()){$('scanVideo').parentElement.hidden=true;$('scanStatus').textContent='กำลังเปิดกล้อง… หรือพิมพ์เลขบาร์โค้ดด้านล่าง';NB().postMessage({type:'scan'});return;}
+    startCam();}
+  window.__nativeScan=c=>{if(c)onCode(c);else $('scanStatus').textContent='ปิดกล้องแล้ว พิมพ์เลขใต้บาร์โค้ดแทนได้';};
   function closeScan(){stopCam();$('scanModal').hidden=true;}
-  function loadZX(){return new Promise((res,rej)=>{if(window.ZXing)return res();const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';s.onload=res;s.onerror=()=>rej(new Error('zxing'));document.head.appendChild(s);});}
+  function loadZX(){const add=src=>new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>{s.remove();rej(new Error('zxing'));};document.head.appendChild(s);});
+    if(window.ZXing)return Promise.resolve();return add('vendor/zxing.min.js').catch(()=>add('https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js'));}
   async function startCam(){const st=$('scanStatus');st.textContent='กำลังเปิดกล้อง…';$('scanVideo').parentElement.hidden=false;
     if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){st.textContent='เบราว์เซอร์นี้เปิดกล้องไม่ได้ พิมพ์เลขบาร์โค้ดด้านล่างแทน';$('scanVideo').parentElement.hidden=true;return;}
     try{
@@ -1979,28 +2325,29 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
       if(j&&j.status===1&&j.product){const p=j.product,n=p.nutriments||{};let k=n['energy-kcal_100g'];if(k==null&&n.energy_100g!=null)k=n.energy_100g/4.184;
         const nm=(p.product_name_th||p.product_name||p.product_name_en||'').trim();
         if(k==null){manualProd(code,nm);st.textContent='พบสินค้าแต่ไม่มีข้อมูลพลังงาน ใส่จากฉลากได้เลย';return;}
-        showProd({code,name:(nm||'สินค้า '+code)+(p.brands?' · '+p.brands.split(',')[0].trim():''),per100:{k:+k,p:+(n.proteins_100g||0),c:+(n.carbohydrates_100g||0),f:+(n.fat_100g||0)},serv:(+p.serving_quantity)||null,servTxt:p.serving_size||'',src:'off'});
+        showProd({code,name:(nm||'สินค้า '+code)+(p.brands?' · '+p.brands.split(',')[0].trim():''),per100:Object.assign({k:+k,p:+(n.proteins_100g||0),c:+(n.carbohydrates_100g||0),f:+(n.fat_100g||0)},(()=>{const na=n.sodium_100g!=null?n.sodium_100g*1000:(n.salt_100g!=null?n.salt_100g*400:null),su=n.sugars_100g,ch=n.cholesterol_100g;return (na!=null||su!=null)?{su:+(su||0),na:+(na||0),ch:ch!=null?ch*1000:0}:{};})()),serv:(+p.serving_quantity)||null,servTxt:p.serving_size||'',src:'off'});
         st.textContent='ข้อมูลจาก Open Food Facts ตรวจกับฉลากอีกครั้งก่อนเพิ่ม';
       }else{manualProd(code,'');st.textContent='ยังไม่มีสินค้านี้ในฐานข้อมูล ใส่ข้อมูลจากฉลากครั้งเดียว ครั้งหน้าสแกนแล้วเจอเลย';}
     }catch(e){manualProd(code,'');st.textContent='ค้นหาออนไลน์ไม่ได้ ใส่ข้อมูลจากฉลากเองได้';}}
   const prodGrams=()=>{const a=parseFloat($('pAmt').value)||0;return $('pUnit').value==='s'?a*curProd.serv:a;};
   function showProd(prod){curProd=prod;const pv=prod.per100;
-    $('scanRes').innerHTML='<div class="prod"><b>'+esc(prod.name)+'</b><div class="hint">ต่อ 100 ก./มล. · '+fmt(pv.k)+' kcal · P '+f1(pv.p)+' · C '+f1(pv.c)+' · F '+f1(pv.f)+(prod.servTxt?' · 1 หน่วยบริโภค '+esc(prod.servTxt):'')+'</div>'+
+    $('scanRes').innerHTML='<div class="prod"><b>'+esc(prod.name)+'</b><div class="hint">ต่อ 100 ก./มล. · '+fmt(pv.k)+' kcal · P '+f1(pv.p)+' · C '+f1(pv.c)+' · F '+f1(pv.f)+(pv.na!=null?' · น้ำตาล '+f1(pv.su)+' ก. · โซเดียม '+fmt(pv.na)+' มก.':'')+(prod.servTxt?' · 1 หน่วยบริโภค '+esc(prod.servTxt):'')+'</div>'+
       '<div class="prodrow"><div class="field"><label for="pAmt">ปริมาณที่กิน</label><input type="number" id="pAmt" min="0" step="any" value="'+(prod.serv?1:100)+'"></div>'+
       '<div class="field"><label for="pUnit">หน่วย</label><select id="pUnit">'+(prod.serv?'<option value="s">หน่วยบริโภค ('+fmt(prod.serv)+' ก.)</option>':'')+'<option value="g">กรัม / มล.</option></select></div>'+
       '<button class="btn" type="button" id="pAdd">เพิ่มลงบันทึก</button></div><p class="hint n" id="pCalc"></p></div>';
-    const upd=()=>{const g=prodGrams();$('pCalc').textContent='= '+fmt(pv.k*g/100)+' kcal · P '+f1(pv.p*g/100)+' · C '+f1(pv.c*g/100)+' · F '+f1(pv.f*g/100);};
+    const upd=()=>{const g=prodGrams();$('pCalc').textContent='= '+fmt(pv.k*g/100)+' kcal · P '+f1(pv.p*g/100)+' · C '+f1(pv.c*g/100)+' · F '+f1(pv.f*g/100)+(pv.na!=null?' · โซเดียม '+fmt(pv.na*g/100)+' มก.':'');};
     $('pAmt').oninput=upd;$('pUnit').onchange=upd;upd();
     $('pAdd').onclick=()=>{const g=prodGrams();if(!(g>0))return;BC[prod.code]=prod;store.set('kc.barcodes',BC);
-      addLog({name:prod.name,unit:fmt(g)+' ก.',q:1,k:pv.k*g/100,p:pv.p*g/100,c:pv.c*g/100,f:pv.f*g/100});closeScan();};}
+      addLog(Object.assign({name:prod.name,unit:fmt(g)+' ก.',q:1,k:pv.k*g/100,p:pv.p*g/100,c:pv.c*g/100,f:pv.f*g/100},pv.na!=null?{su:(pv.su||0)*g/100,na:pv.na*g/100,ch:(pv.ch||0)*g/100}:{}));closeScan();};}
   function manualProd(code,name){
     $('scanRes').innerHTML='<div class="prod"><b>ใส่ข้อมูลจากฉลากโภชนาการ</b> <span class="hint">บาร์โค้ด '+esc(code)+'</span>'+
       '<div class="field" style="margin-top:8px"><label for="mpName">ชื่อสินค้า</label><input type="text" id="mpName" value="'+esc(name)+'" placeholder="เช่น นมเปรี้ยวรสสตรอว์เบอร์รี"></div>'+
       '<div class="mprow"><div class="field"><label for="mpS">ปริมาณ (ก.)</label><input type="number" id="mpS" value="100"></div><div class="field"><label for="mpK">kcal</label><input type="number" id="mpK"></div><div class="field"><label for="mpP">โปรตีน</label><input type="number" id="mpP"></div><div class="field"><label for="mpC">คาร์บ</label><input type="number" id="mpC"></div><div class="field"><label for="mpF">ไขมัน</label><input type="number" id="mpF"></div></div>'+
+      '<div class="mprow" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="field"><label for="mpSu">น้ำตาล (ก.)</label><input type="number" id="mpSu"></div><div class="field"><label for="mpNa">โซเดียม (มก.)</label><input type="number" id="mpNa"></div><div class="field"><label for="mpCh">คอเลสเตอรอล (มก.)</label><input type="number" id="mpCh"></div></div>'+
       '<p class="hint">ใส่ตามฉลาก "หนึ่งหน่วยบริโภค" แล้วใส่น้ำหนักของหน่วยบริโภคในช่องปริมาณ</p><button class="btn" type="button" id="mpSave" style="margin-top:8px">บันทึกสินค้านี้</button></div>';
     $('mpSave').onclick=()=>{const s=parseFloat($('mpS').value)||100,k=parseFloat($('mpK').value),nm=$('mpName').value.trim();
       if(!nm||!(k>=0)){$('scanStatus').textContent='ใส่ชื่อสินค้าและแคลอรี่ก่อน';return;}const m=100/s;
-      const prod={code,name:nm,per100:{k:k*m,p:(parseFloat($('mpP').value)||0)*m,c:(parseFloat($('mpC').value)||0)*m,f:(parseFloat($('mpF').value)||0)*m},serv:s!==100?s:null,servTxt:s!==100?fmt(s)+' ก.':'',src:'me'};
+      const prod={code,name:nm,per100:{k:k*m,p:(parseFloat($('mpP').value)||0)*m,c:(parseFloat($('mpC').value)||0)*m,f:(parseFloat($('mpF').value)||0)*m,...(()=>{const g=id=>{const v=parseFloat($(id).value);return isFinite(v)?v:null;},su=g('mpSu'),na=g('mpNa'),ch=g('mpCh');return (su!=null||na!=null)?{su:(su||0)*m,na:(na||0)*m,ch:(ch||0)*m}:{};})()},serv:s!==100?s:null,servTxt:s!==100?fmt(s)+' ก.':'',src:'me'};
       BC[code]=prod;store.set('kc.barcodes',BC);showProd(prod);$('scanStatus').textContent='บันทึกสินค้าแล้ว ครั้งหน้าสแกนแล้วเจอทันที';};}
   $('scanBtn').addEventListener('click',openScan);
   $('scanClose').addEventListener('click',closeScan);
@@ -2014,10 +2361,19 @@ footer{font-size:12.5px;color:var(--muted);line-height:1.7}
   function showView(v){if(!VIEWS.includes(v))v='dashboard';
     VIEWS.forEach(x=>{$('view-'+x).hidden=x!==v;});
     $('daybar').hidden=!(v==='log'||v==='exercise');
+    $('appTitle').textContent={dashboard:'ภาพรวมวันนี้',target:'ตั้งเป้าหมาย',log:'บันทึกอาหาร',exercise:'ออกกำลังกาย'}[v];
     document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-current',b.dataset.view===v?'page':'false'));
     try{history.replaceState(null,'','#'+v);}catch(e){}
     try{localStorage.setItem('kc.view',v);}catch(e){}}
   document.addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(!b)return;e.preventDefault();if(b.dataset.today)setDay(TODAY);showView(b.dataset.view);window.scrollTo({top:0,behavior:'smooth'});});
+
+  /* ---------- Android back button ---------- */
+  window.__androidBack=function(){try{
+    if(!$('scanModal').hidden){closeScan();return true;}
+    const cm=document.getElementById('cd-modal');if(cm&&cm.classList.contains('show')){cm.classList.remove('show');return true;}
+    if(!$('dayPop').hidden){toggleDP(false);return true;}
+    const cur=VIEWS.find(v=>!$('view-'+v).hidden);if(cur&&cur!=='dashboard'){showView('dashboard');window.scrollTo(0,0);return true;}
+  }catch(e){}return false;};
 
   /* ---------- init ---------- */
   $('mealSel').value=(h=>h<10?'เช้า':h<14?'กลางวัน':h<17?'ของว่าง':'เย็น')(d.getHours());
@@ -2993,6 +3349,23 @@ function refreshSummary(){
     clearTimeout(saveTimer); flush(); notify();
   }
 }
+function setSessionKcal(h, v, type){
+  const rest = h.sec * restKcalPerSec();
+  if(type === 'a'){ h.kAct = v; h.kcal = v + rest; } else { delete h.kAct; h.kcal = v; }
+  h.kEdited = 1;
+  save(); drawHistory(); drawStats(); clearTimeout(saveTimer); flush(); notify();
+}
+$('kSave').onclick = () => {
+  const v = parseFloat($('kIn').value), h = history[0];
+  if(!h || !(v >= 0 && v <= 5000)){ $('kMsg').textContent = 'ใส่ค่าระหว่าง 0–5,000 kcal'; return; }
+  const type = $('kType').value; setSessionKcal(h, v, type);
+  const net = h.kAct != null ? h.kAct : Math.max(0, h.kcal - h.sec*restKcalPerSec());
+  if($('sumK')){ $('sumK').textContent = Math.round(h.kcal); $('sumKl').textContent = 'kcal (แก้ตามนาฬิกา)'; $('sumNet').textContent = Math.round(net); }
+  $('kMsg').textContent = 'บันทึกแล้ว ใช้ ' + Math.round(h.kcal) + ' kcal รวม · สุทธิ ' + Math.round(net) + ' kcal ไปคำนวณเป้าแคลอรี่ของวันนี้';
+};
+$('kIn').addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); $('kSave').click(); } });
+window.__cadSetKcal = (ts, v, type) => { const h = history.find(x => x.ts === ts); if(!h) return false; setSessionKcal(h, v, type); return true; };
+window.__cadDelete = ts => { const n = history.length; history = history.filter(x => x.ts !== ts); if(history.length === n) return false; save(); drawHistory(); drawStats(); clearTimeout(saveTimer); flush(); notify(); return true; };
 function summary(){
   const T = totalTime(), rest = T*restKcalPerSec(), net = Math.max(0, burned-rest), ton = totalTon();
   actual = plan.map(b => b.reps);
@@ -3005,8 +3378,8 @@ function summary(){
                           + ' · ' + totalRounds() + ' รอบ · ' + plan.length + ' ท่า';
   $('sumBig').innerHTML =
       '<div><b>'+fmtLong(T)+'</b><i>เวลารวม</i></div>'
-    + '<div><b>'+burned.toFixed(0)+'</b><i>kcal</i></div>'
-    + '<div><b>'+net.toFixed(0)+'</b><i>kcal สุทธิ</i></div>'
+    + '<div><b id="cd-sumK">'+burned.toFixed(0)+'</b><i id="cd-sumKl">kcal (ประมาณจาก MET)</i></div>'
+    + '<div><b id="cd-sumNet">'+net.toFixed(0)+'</b><i>kcal สุทธิ</i></div>'
     + '<div><b id="cd-sumTon">'+Math.round(ton).toLocaleString()+'</b><i>kg volume</i></div>';
 
   let rows = '', work = 0;
@@ -3053,6 +3426,8 @@ function summary(){
     + (burned/bmr()*100).toFixed(1) + '% ของ BMR ต่อวัน)'
     + '<br>Volume = น้ำหนักดัมเบลรวม × ครั้ง × เซ็ต — ใช้ดูความก้าวหน้าได้ตรงกว่าแคลอรี่' + cmp
     + '<br>ตัวเลขแคลอรี่เป็นค่าประมาณจาก MET ไม่ใช่การวัดจริง';
+  $('kIn').value = burned.toFixed(0); $('kType').value = 't';
+  $('kMsg').textContent = 'ระบบประมาณจาก MET ถ้านาฬิกาวัดได้ต่างจากนี้ ใส่ค่าจากนาฬิกาแล้วกด "ใช้ค่านี้" · นาฬิกาส่วนใหญ่มี 2 ค่า: Total (รวมพลังงานขณะพัก) และ Active (เฉพาะที่เผาเพิ่ม) เลือกให้ตรงกับค่าที่ใส่';
   $('modal').classList.add('show');
   say('จบโปรแกรมแล้ว เผาผลาญประมาณ ' + burned.toFixed(0) + ' แคลอรี่');
 }
