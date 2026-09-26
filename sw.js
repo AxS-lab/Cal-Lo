@@ -1,5 +1,5 @@
 /* Balance service worker — เปลี่ยนเลขเวอร์ชันทุกครั้งที่อัปเดตไฟล์ เพื่อให้เครื่องผู้ใช้โหลดของใหม่ */
-const VERSION = 'balance-v3.3.1';
+const VERSION = 'balance-v3.6.0';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png',
