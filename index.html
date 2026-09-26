@@ -236,16 +236,21 @@ td.n,th.n{text-align:right}
 .remain{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .remain .v{font-size:36px;font-weight:600;line-height:1.1}
 .qty{width:72px!important;padding:4px 8px!important;text-align:right}
-.ing{display:grid;grid-template-columns:minmax(0,2.2fr) 78px minmax(0,1.1fr) 62px 28px;gap:6px;align-items:center}
-.ing .kc{font-size:13px;text-align:right;color:var(--muted)}
-.ing input,.ing select{padding:7px 9px;font-size:13.5px}
-@media (max-width:520px){.ing{grid-template-columns:minmax(0,1fr) 70px 28px}.ing select.u{grid-column:1/2}.ing .kc{grid-column:2/3}}
-.ings{display:flex;flex-direction:column;gap:8px}
+.ing{display:grid;grid-template-columns:88px minmax(0,1fr) auto;grid-template-areas:"i i x" "q u kc";gap:8px 8px;align-items:center;padding:10px;border-radius:16px;background:rgba(255,255,255,.55);border:1px solid var(--glass-line);box-shadow:0 2px 8px rgba(47,62,70,.05)}
+.ing select.i{grid-area:i;font-weight:500;font-size:15px;padding:9px 30px 9px 12px}
+.ing input.q{grid-area:q;text-align:center;font-weight:600;font-size:16px;padding:8px 6px;font-variant-numeric:tabular-nums}
+.ing select.u{grid-area:u;font-size:14px;padding:8px 26px 8px 10px}
+.ing .kc{grid-area:kc;min-width:62px;text-align:right;line-height:1.15;color:var(--ink)}
+.ing .kc b{display:block;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.ing .kc small{display:block;font-size:11px;color:var(--muted)}
+.ing .btn.x{grid-area:x;width:34px;height:34px;border-radius:50%;background:rgba(232,174,183,.25);color:#9B3F50;font-size:18px;display:flex;align-items:center;justify-content:center;padding:0}
+.ing .btn.x:hover{background:rgba(232,174,183,.5)}
+.ings{display:flex;flex-direction:column;gap:10px}
 .yieldbox:empty{display:none}
 .yieldbox{background:rgba(255,255,255,.45);border:1px solid var(--glass-line);border-radius:12px;padding:10px 12px;line-height:1.7}
 .yieldbox b{color:var(--ink);font-weight:600}
 .inghead{font-size:12px;color:var(--muted);font-weight:500}
-@media (max-width:520px){.inghead{display:none}}
+.inghead{display:none!important}
 .sum{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .sum > div{background:rgba(255,255,255,.5);border:1px solid var(--glass-line);border-radius:14px;padding:12px 14px}
 .sum .lbl{display:block}
@@ -1159,7 +1164,7 @@ footer{display:none}
           <div><span class="lbl">ต่อ 1 ที่</span><span class="n big2" id="rPer">0 kcal</span><span class="n hint" id="rPerM"></span></div>
         </div>
         <p class="hint" id="rPer100"></p>
-        <p class="hint n" id="rX"></p>
+        <p class="hint" id="rX" style="font-variant-numeric:tabular-nums"></p>
         <div class="row" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:end">
           <div class="field"><label for="eatQ">กินไป</label><input type="number" id="eatQ" min="0" step="0.5" value="1"></div>
           <div class="field"><label for="eatU">หน่วย</label><select id="eatU"><option value="serv">ที่</option><option value="g">กรัม (น้ำหนักสุกที่ตักกิน)</option></select></div>
@@ -2023,7 +2028,7 @@ footer{display:none}
       t.drip+=drip;t.oil+=oil;t.ck+=g*y+oil;
       const xx=ingX(ing);if(xx){t.su+=xx[0]*m;t.na+=xx[1]*m;t.ch+=xx[2]*m;}else if(g>0)t.nx++;
       if(y!==1&&g>0)yl.push(ing[1]+(r.u===CK?': ชั่งสุก '+fmt(g*y)+' ก. = ดิบ ~'+fmt(g)+' ก.':': ดิบ '+fmt(g)+' ก. → สุก ~'+fmt(g*y)+' ก.'));
-      const el=$('kc-'+r.k);if(el)el.textContent=fmt(ing[3]*m-drip*9+oil*8.84);});
+      const el=$('kc-'+r.k);if(el)el.innerHTML='<b>'+fmt(ing[3]*m-drip*9+oil*8.84)+'</b><small>kcal'+(r.u!=='กรัม'&&g>0?' · '+(r.u===CK?'ดิบ ':'')+fmt(g)+' ก.':'')+'</small>';});
     const notes=[];
     if(t.drip>0.05)notes.push(M.label+': ไขมันหยด/ละลายทิ้ง −'+f1(t.drip)+' ก. (−'+fmt(t.drip*9)+' kcal) คิดตามชนิดเนื้อ ส่วนติดมันหยดมากกว่าเนื้อแดง');
     if(t.oil>0.05)notes.push(M.label+': น้ำมันที่อมเข้าไป +'+fmt(t.oil)+' ก. (+'+fmt(t.oil*8.84)+' kcal) คิดตามชนิดวัตถุดิบ ผักและมันฝรั่งอมมากกว่าเนื้อ');
